@@ -10,6 +10,25 @@ vim.opt.shellquote = ''
 vim.opt.shellredir = '2>&1 | Out-File -Encoding UTF8 %s'
 vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s'
 
+-- Format settings
+-- Line numbers
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+-- Indenting
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+
+-- Line wrap
+vim.opt.wrap = false
+
+-- Search
+vim.opt.scrolloff = 8
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 vim.g.mapleader = ' '
@@ -49,7 +68,7 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -74,7 +93,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -176,7 +195,6 @@ require('lazy').setup({
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
     opts = {},
@@ -193,7 +211,8 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release; cmake --build build --config Release; cmake --install build --prefix build',
+        build =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release; cmake --build build --config Release; cmake --install build --prefix build',
       },
     },
   },
@@ -207,7 +226,7 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 }, {})
 
