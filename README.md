@@ -8,10 +8,6 @@ This project is a fork of [kickstart.nvim](https://github.com/nvim-lua/kickstart
 > **NOTE**
 > [Backup](#FAQ) your previous configuration (if any exists)
 
-Requirements:
-* Make sure to review the readmes of the plugins if you are experiencing errors. In particular:
-  * [ripgrep](https://github.com/BurntSushi/ripgrep#installation) is required for multiple [telescope](https://github.com/nvim-telescope/telescope.nvim#suggested-dependencies) pickers.
-
 Neovim's configurations are located under the following path:
 
 | Shell | PATH |
@@ -20,6 +16,7 @@ Neovim's configurations are located under the following path:
 | powershell | `$env:USERPROFILE\AppData\Local\nvim\` |
 
 - Download and install:
+  - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
   - [MinGW](https://www.mingw-w64.org/)
   > **NOTE**
   > In this case, using [chocolatey](https://chocolatey.org/) is quick and easy
