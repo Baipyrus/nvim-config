@@ -52,6 +52,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure plugins ]]
 require('lazy').setup({
+  -- Discord RPC
+  'andweeb/presence.nvim',
+
   -- Practice games
   'ThePrimeagen/vim-be-good',
 
