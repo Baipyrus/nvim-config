@@ -23,7 +23,7 @@ Neovim's configurations are located under the following path:
   - [CMake](https://cmake.org/)
   > **NOTE**
   > Make sure to select 'add to PATH' during installation
-- [MSBuild-Tools](https://github.com/bycloudai/InstallVSBuildToolsWindows)
+  - [MSBuild-Tools](https://github.com/bycloudai/InstallVSBuildToolsWindows)
 - Clone this repository:
   - on Windows (cmd)
   ```
