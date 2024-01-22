@@ -1,6 +1,6 @@
 ## Introduction
 
-This project is a fork of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+This project is a fork of [dam9000/kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim.git)
 
 
 ### Installation (Windows Only)
@@ -65,9 +65,10 @@ nvim --headless "+Lazy! sync" +qa
   * The main purpose of kickstart is to serve as a teaching tool and a reference
     configuration that someone can easily `git clone` as a basis for their own.
     As you progress in learning Neovim and Lua, you might consider splitting `init.lua`
-    into smaller parts. A fork of kickstart that does this while maintaining the exact
-    same functionality is available here:
-    * [kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim)
+    into smaller parts. *This is the fork of the original project that splits the configuration into smaller parts.*
+    The original repo that maintains the exact
+    same functionality in a single `init.lua` file is available here:
+    * [kickstart.nvim](https://github.com/dam9000/kickstart-modular.nvim)
   * Discussions on this topic can be found here:
     * [Restructure the configuration](https://github.com/nvim-lua/kickstart.nvim/issues/218)
     * [Reorganize init.lua into a multi-file setup](https://github.com/nvim-lua/kickstart.nvim/pull/473)
