@@ -1,6 +1,10 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+
+-- See `:help telescope.builtin`
+local builtin = require 'telescope.builtin'
+
+local on_attach = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -18,12 +22,12 @@ local on_attach = function(_, bufnr)
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
+  nmap('gr', builtin.lsp_references, '[G]oto [R]eferences')
+  nmap('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
+  nmap('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
+  nmap('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -41,6 +45,23 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  -- The following two autocommands are used to highlight references of the
+  -- word under your cursor when your cursor rests there for a little while.
+  --    See `:help CursorHold` for information about when this is executed
+  --
+  -- When you move your cursor, the highlights will be cleared (the second autocommand).
+  if client and client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      buffer = event.buf,
+      callback = vim.lsp.buf.document_highlight,
+    })
+
+    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+      buffer = event.buf,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end
 end
 
 -- document existing key chains
@@ -82,9 +103,19 @@ local servers = {
   svelte = {},
   lua_ls = {
     Lua = {
-      workspace = { checkThirdParty = false },
+      runtime = { version = 'LuaJIT' },
+      workspace = {
+        checkThirdParty = false,
+        -- Tells lua_ls where to find all the Lua files that you have loaded
+        -- for your neovim configuration.
+        library = {
+          '${3rd}/luv/library',
+          unpack(vim.api.nvim_get_runtime_file('', true)),
+        },
+        -- If lua_ls is really slow on your computer, you can try this instead:
+        -- library = { vim.env.VIMRUNTIME },
+      },
       telemetry = { enable = false },
-      -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
 }
@@ -94,24 +125,33 @@ require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+-- You can add other tools here that you want Mason to install
+-- for you, so that they are available from within Neovim.
+local ensure_installed = vim.tbl_keys(servers or {})
+vim.list_extend(ensure_installed, {
+  'stylua', -- Used to format lua code
+})
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
+require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
+require('mason-lspconfig').setup {
+  handlers = {
+    function(server_name)
+      local server = servers[server_name] or {}
+      require('lspconfig')[server_name].setup {
+        cmd = server.cmd,
+        on_attach = on_attach,
+        settings = server.settings,
+        filetypes = server.filetypes,
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for tsserver)
+        capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
+      }
+    end,
+  }
 }
 
 -- vim: ts=2 sts=2 sw=2 et

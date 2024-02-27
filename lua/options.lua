@@ -33,14 +33,18 @@ vim.o.wrap = false
 -- Search
 vim.o.scrolloff = 8
 
--- Set highlight on search
-vim.o.hlsearch = false
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.o.hlsearch = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Make line numbers default
 vim.wo.number = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
+
+-- Don't show the mode, since it's already in status line
+vim.o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -69,5 +73,15 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- Configure how new splits should be opened
+vim.o.splitright = true
+vim.o.splitbelow = true
+
+-- Preview substitutions live, as you type!
+vim.o.inccommand = 'split'
+
+-- Show which line your cursor is on
+vim.opt.cursorline = true
 
 -- vim: ts=2 sts=2 sw=2 et
