@@ -53,12 +53,12 @@ local on_attach = function(client, bufnr)
   -- When you move your cursor, the highlights will be cleared (the second autocommand).
   if client and client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-      buffer = event.buf,
+      buffer = bufnr,
       callback = vim.lsp.buf.document_highlight,
     })
 
     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-      buffer = event.buf,
+      buffer = bufnr,
       callback = vim.lsp.buf.clear_references,
     })
   end
@@ -151,7 +151,7 @@ require('mason-lspconfig').setup {
         capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
       }
     end,
-  }
+  },
 }
 
 -- vim: ts=2 sts=2 sw=2 et
