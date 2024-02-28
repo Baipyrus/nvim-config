@@ -31,9 +31,14 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Delete (currently selected) text without yanking it
 vim.keymap.set({ 'n', 'v' }, '<leader>dny', '"_d', { desc = '[D]elete [N]o [Y]ank' })
-
 -- Replace currently selected text with default register without yanking it
 vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
+
+-- Populate CMD to prepare for change directory
+vim.keymap.set({ 'n', 'v' }, '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
+
+-- Open git window from fugitive in full screen
+vim.keymap.set({ 'n', 'v' }, '<leader>go', ':Git<enter><C-w>o', { desc = '[G]it [O]pen' })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
