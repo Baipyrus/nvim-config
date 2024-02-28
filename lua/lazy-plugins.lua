@@ -174,11 +174,11 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        javascript = { { "prettierd", "prettier" } },
+        javascript = { { 'prettierd', 'prettier' } },
       },
     },
   },
@@ -190,7 +190,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
     'folke/tokyonight.nvim',
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here
@@ -204,7 +204,7 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',    opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   {
     -- Collection of various small independent plugins/modules
@@ -251,8 +251,7 @@ require('lazy').setup({
 
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
-        build =
-        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release; cmake --build build --config Release; cmake --install build --prefix build',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release; cmake --build build --config Release; cmake --install build --prefix build',
 
         -- `cond` is a condition used to determine whether this plugin should be
         -- installed and loaded.
@@ -265,7 +264,7 @@ require('lazy').setup({
       -- Useful for getting pretty icons, but requires special font.
       --  If you already have a Nerd Font, or terminal set up with fallback fonts
       --  you can enable this
-      { 'nvim-tree/nvim-web-devicons' }
+      { 'nvim-tree/nvim-web-devicons' },
     },
   },
 
@@ -288,7 +287,6 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
 
   require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.health',
   require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
