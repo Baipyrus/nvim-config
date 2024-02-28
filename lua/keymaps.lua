@@ -35,7 +35,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>dny', '"_d', { desc = '[D]elete [N]o [Y]an
 vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
 
 -- Populate CMD to prepare for change directory
-vim.keymap.set({ 'n', 'v' }, '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
+vim.keymap.set('n', '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
 
 -- Open git window from fugitive in full screen
 vim.keymap.set({ 'n', 'v' }, '<leader>go', ':Git<enter><C-w>o', { desc = '[G]it [O]pen' })
