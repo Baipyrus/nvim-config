@@ -9,7 +9,11 @@
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup({
+require('lazy').setup {
+
+  -- [[ Plugin Specs list ]]
+
+
   -- NOTE: First, some plugins that don't require any configuration
   -- Discord RPC
   'andweeb/presence.nvim',
@@ -295,6 +299,6 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
   { import = 'custom.plugins' },
-}, {})
+}
 
 -- vim: ts=2 sts=2 sw=2 et
