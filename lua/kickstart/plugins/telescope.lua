@@ -75,6 +75,9 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
+      -- See `:help telescope.builtin`
+      local builtin = require 'telescope.builtin'
+      local actions = require 'telescope.actions'
       -- Find files parameters
       local find_command = {
         'rg',
@@ -96,10 +99,6 @@ return {
         return true
       end
 
-      -- See `:help telescope.builtin`
-      local builtin = require 'telescope.builtin'
-      local actions = require 'telescope.actions'
-      
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', function()
