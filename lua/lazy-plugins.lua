@@ -20,6 +20,10 @@ require('lazy').setup {
   -- Practice games
   'ThePrimeagen/vim-be-good',
 
+  -- Git related plugins
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
