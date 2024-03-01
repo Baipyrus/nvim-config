@@ -13,7 +13,6 @@ require('lazy').setup {
 
   -- [[ Plugin Specs list ]]
 
-
   -- NOTE: First, some plugins that don't require any configuration
   -- Discord RPC
   'andweeb/presence.nvim',
@@ -37,7 +36,7 @@ require('lazy').setup {
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Setup neovim lua configuration
-  { "folke/neodev.nvim", opts = {} },
+  { 'folke/neodev.nvim', opts = {} },
 
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
@@ -70,7 +69,7 @@ require('lazy').setup {
   --
   --  Here are some example plugins that I've included in the kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  
+
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
 

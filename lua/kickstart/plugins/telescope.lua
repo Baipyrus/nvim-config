@@ -30,7 +30,7 @@ return {
       -- Useful for getting pretty icons, but requires special font.
       --  If you already have a Nerd Font, or terminal set up with fallback fonts
       --  you can enable this
-      { 'nvim-tree/nvim-web-devicons' }
+      { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -78,6 +78,7 @@ return {
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       local actions = require 'telescope.actions'
+
       -- Find files parameters
       local find_command = {
         'rg',
@@ -155,7 +156,7 @@ return {
       -- Git file search
       vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
       vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-      
+
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -180,7 +181,7 @@ return {
           -- This will ignore the directories you specified
           find_command = find_command,
           attach_mappings = attach_mappings,
-          cwd = vim.fn.stdpath 'config'
+          cwd = vim.fn.stdpath 'config',
         }
       end, { desc = '[S]earch [N]eovim files' })
     end,
