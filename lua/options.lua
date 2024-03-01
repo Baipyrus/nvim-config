@@ -1,6 +1,7 @@
 -- [[ Setting options ]]
--- See `:help vim.o`
+-- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
+--  For more options, you can see `:help option-list`
 
 -- Set display language
 vim.api.nvim_exec2('language en_US', {})
@@ -15,7 +16,7 @@ vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s'
 vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s'
 
 -- Format settings
--- Line numbers
+-- Make line numbers default
 vim.o.nu = true
 vim.o.relativenumber = true
 
@@ -25,22 +26,10 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
-vim.o.smartindent = true
-
 -- Line wrap
 vim.o.wrap = false
 
--- Search
-vim.o.scrolloff = 8
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.o.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
+-- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in status line
@@ -62,26 +51,33 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
-
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+-- Sets how neovim will display certain whitespace in the editor.
+--  See :help 'list'
+--  and :help 'listchars'
+vim.o.list = true
+vim.o.listchars = {
+    tab = '» ',
+    trail = '·',
+    nbsp = '␣'
+}
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.o.cursorline = true
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.o.scrolloff = 8
 
 -- vim: ts=2 sts=2 sw=2 et
