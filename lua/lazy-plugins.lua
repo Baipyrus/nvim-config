@@ -24,6 +24,9 @@ require('lazy').setup {
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  -- Processing-Java
+  'sophacles/vim-processing',
+
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
