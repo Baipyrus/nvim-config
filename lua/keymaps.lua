@@ -46,7 +46,7 @@ vim.keymap.set('n', '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]
 vim.keymap.set({ 'n', 'v' }, '<leader>go', ':Git<enter><C-w>o', { desc = '[G]it [O]pen' })
 
 -- [[ Basic Autocommands ]]
---  See :help lua-guide-autocommands
+--  See `:help lua-guide-autocommands`
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
