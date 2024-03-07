@@ -77,7 +77,8 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
--- Minimal number of screen lines to keep above and below the cursor.
+-- Minimal spacing to keep around the cursor.
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 12
 
 -- vim: ts=2 sts=2 sw=2 et
