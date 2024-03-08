@@ -43,6 +43,9 @@ vim.keymap.set('n', '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]
 -- Switch in fugitive.vim status window with the current one
 vim.keymap.set('n', '<leader>gs', '<cmd>Gedit :<cr>', { desc = '[G]it [S]tatus' })
 
+-- Delete current buffer without closing window
+vim.keymap.set('n', '<leader>bd', '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>', { desc = '[B]uffer [D]elete' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
