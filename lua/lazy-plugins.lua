@@ -9,8 +9,7 @@
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup {
-
+require('lazy').setup({
   -- [[ Plugin Specs list ]]
 
   -- NOTE: First, some plugins that don't require any configuration
@@ -26,6 +25,34 @@ require('lazy').setup {
 
   -- Processing-Java
   'sophacles/vim-processing',
+
+  -- Smooth scroll plugin and keymaps
+  {
+    'karb94/neoscroll.nvim',
+    config = function()
+      require('neoscroll').setup {
+        hide_cursor = false,
+        easing_function = nil,
+        respect_scrolloff = true,
+      }
+
+      require('neoscroll.config').set_mappings {
+        -- Scroll normally
+        ['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '50' } },
+        ['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '50' } },
+        -- Scroll entire page height
+        ['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '80' } },
+        ['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '80' } },
+        -- Scroll 10% at a time
+        ['<C-y>'] = { 'scroll', { '-0.10', 'false', '25' } },
+        ['<C-e>'] = { 'scroll', { '0.10', 'false', '25' } },
+        -- Jump to top, bottom and center
+        ['zt'] = { 'zt', { '40' } },
+        ['zz'] = { 'zz', { '50' } },
+        ['zb'] = { 'zb', { '40' } },
+      }
+    end,
+  },
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -84,8 +111,28 @@ require('lazy').setup {
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
+  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'custom.plugins' },
-}
+}, {
+  ui = {
+    -- If you have a Nerd Font, set icons to an empty table which will use the
+    -- default lazy.nvim defined Nerd Font icons otherwise define a unicode icons table
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤 ',
+    },
+  },
+})
 
 -- vim: ts=2 sts=2 sw=2 et

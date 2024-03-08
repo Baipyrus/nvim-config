@@ -3,6 +3,7 @@ return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
+      'windwp/nvim-ts-autotag',
       'nvim-treesitter/nvim-treesitter-context',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -15,6 +16,11 @@ return {
         ensure_installed = { 'lua', 'python', 'rust', 'javascript', 'typescript', 'vimdoc', 'vim', 'svelte', 'c_sharp' },
         -- Autoinstall languages that are not installed
         auto_install = false,
+        -- Enable autotags and -rename
+        autotag = {
+          enable = true,
+          enable_autocmd = true,
+        },
         -- Install languages synchronously (only applied to `ensure_installed`)
         sync_install = false,
         highlight = { enable = true },

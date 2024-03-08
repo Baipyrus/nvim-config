@@ -12,12 +12,10 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagn
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- Open terminal in current window
+vim.keymap.set({ 'n', 'v' }, '<leader>to', '<cmd>term<cr>', { desc = '[T]erminal [O]pen' })
 
 -- Disable arrow keys in normal mode
 vim.keymap.set({ 'n', 'v' }, '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -42,11 +40,11 @@ vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
 -- Populate CMD to prepare for change directory
 vim.keymap.set('n', '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
 
--- Open git window from fugitive in full screen
-vim.keymap.set({ 'n', 'v' }, '<leader>go', ':Git<enter><C-w>o', { desc = '[G]it [O]pen' })
+-- Switch in fugitive.vim status window with the current one
+vim.keymap.set('n', '<leader>gs', '<cmd>Gedit :<cr>', { desc = '[G]it [S]tatus' })
 
 -- [[ Basic Autocommands ]]
---  See :help lua-guide-autocommands
+--  See `:help lua-guide-autocommands`
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
