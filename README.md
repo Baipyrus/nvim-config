@@ -44,7 +44,7 @@ Clone it from GitHub:
 <details><summary> Linux and Mac </summary>
 
 ```sh
-git clone https://github.com/dam9000/kickstart-modular.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone https://github.com/Baipyrus/nvim-config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
 </details>
