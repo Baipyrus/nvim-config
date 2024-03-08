@@ -21,12 +21,10 @@ If you are experiencing issues, please make sure you have the latest versions.
 External Requirements:
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
-- A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
-  - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
-- Language Setup:
-  - If want to write Typescript, you need `npm`
-  - If want to write Golang, you will need `go`
-  - etc.
+- A [Nerd Font](https://www.nerdfonts.com/): provides various icons
+- Language utils: `rustup`, `npm`, `dotnet`, `python`
+- Optionally, install [Alacritty](https://github.com/alacritty/alacritty#installation)
+  - Or on Windows, just install using `winget install alacritty --source winget`
 
 > **NOTE**
 > See [Windows Installation](#Windows-Installation) to double check any additional Windows notes
