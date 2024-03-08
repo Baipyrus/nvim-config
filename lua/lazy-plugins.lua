@@ -23,6 +23,9 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  -- Processing-Java
+  'sophacles/vim-processing',
+
   -- Smooth scroll plugin and keymaps
   {
     'karb94/neoscroll.nvim',
