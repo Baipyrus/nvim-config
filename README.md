@@ -67,6 +67,10 @@ git clone https://github.com/Baipyrus/nvim-config.git $env:USERPROFILE\AppData\L
 
 ### Post Installation
 
+<details><summary> Extras for Linux and Mac </summary>
+In the [`options`](./lua/options.lua) file, change the settings to specify the terminal of your choice. This installation is used and maintained by a Windows user and, as such, will use Powershell. This setting may need to be updated after each upgrade.
+</details>
+
 Start Neovim
 
 ```sh
