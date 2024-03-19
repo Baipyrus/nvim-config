@@ -20,6 +20,8 @@ return {
         'svelte',
         'c_sharp',
         'markdown',
+        'gitcommit',
+        'gitignore',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
