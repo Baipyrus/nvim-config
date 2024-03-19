@@ -1,6 +1,9 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
+    -- Async IO library
+    'nvim-neotest/nvim-nio',
+
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
 
@@ -16,12 +19,8 @@ return {
     local dapui = require 'dapui'
 
     require('mason-nvim-dap').setup {
-      automatic_setup = false,
+      automatic_setup = true,
       handlers = {},
-      -- Installed language debuggers
-      ensure_installed = {
-        'node-debug2-adapter',
-      },
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!
