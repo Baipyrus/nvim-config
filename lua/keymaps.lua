@@ -45,6 +45,9 @@ vim.keymap.set('n', '<leader>gs', '<cmd>Gedit :<cr>', { desc = '[G]it [S]tatus' 
 
 -- Delete current buffer without closing window
 vim.keymap.set('n', '<leader>bd', '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>', { desc = '[B]uffer [D]elete' })
+-- Switch to between buffers
+vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = '[B]uffer [P]revious' })
+vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = '[B]uffer [N]ext' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
