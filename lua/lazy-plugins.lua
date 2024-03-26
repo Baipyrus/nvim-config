@@ -19,10 +19,6 @@ require('lazy').setup({
   -- Practice games
   'ThePrimeagen/vim-be-good',
 
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-
   -- Processing-Java
   'sophacles/vim-processing',
 
