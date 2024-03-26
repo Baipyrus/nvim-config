@@ -40,9 +40,6 @@ vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
 -- Populate CMD to prepare for change directory
 vim.keymap.set('n', '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
 
--- Switch in fugitive.vim status window with the current one
-vim.keymap.set('n', '<leader>gs', '<cmd>Gedit :<cr>', { desc = '[G]it [S]tatus' })
-
 -- Delete current buffer without closing window
 vim.keymap.set('n', '<leader>bd', '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>', { desc = '[B]uffer [D]elete' })
 -- Switch to between buffers
