@@ -27,7 +27,8 @@ External Requirements:
   - Or on Windows, just install using `winget install alacritty --source winget`
 
 > **NOTE**
-> See [Windows Installation](#Windows-Installation) to double check any additional Windows notes
+> See [Install Recipes](#Install-Recipes) for additional Windows and Linux specific notes
+> and quick install snippets
 
 Neovim's configurations are located under the following paths, depending on your OS:
 
@@ -84,13 +85,18 @@ current plugin status.
 
 * What should I do if I already have a pre-existing neovim configuration?
   * You should back it up and then delete all associated files.
-  * This includes your existing init.lua and the neovim files in `~/.local` which can be deleted with `rm -rf ~/.local/share/nvim/` or their windows counterparts in `AppData\Local\nvim-data`
+  * This includes your existing init.lua and the neovim files in `~/.local`
+    which can be deleted with `rm -rf ~/.local/share/nvim/` or their
+    windows counterparts in `AppData\Local\nvim-data`
 * Can I keep my existing configuration in parallel to kickstart?
-  * Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME` to maintain multiple configurations. For example, you can install the kickstart configuration in `~/.config/nvim-kickstart` and create an alias:
+  * Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME`
+    to maintain multiple configurations. For example, you can install the kickstart
+    configuration in `~/.config/nvim-kickstart` and create an alias:
     ```sh
     alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
     ```
-    When you run Neovim using `nvim-kickstart` alias it will use the alternative config directory and the matching local directory `~/.local/share/nvim-kickstart`.
+    When you run Neovim using `nvim-kickstart` alias it will use the alternative
+    config directory and the matching local directory `~/.local/share/nvim-kickstart`.
     You could also run your configuration inline, for example in Windows Powershell:
     ```pwsh
     $env:NVIM_APPNAME = 'nvim-kickstart'; nvim
@@ -98,9 +104,30 @@ current plugin status.
 * What if I want to "uninstall" this configuration:
   * See [lazy.nvim uninstall](https://github.com/folke/lazy.nvim#-uninstalling) information
 
-### Windows Installation
+### Install Recipes
 
-Installation requires gcc and make, for which you don't need to change the config,
+Below you can find OS specific install instructions for Neovim and dependencies.
+
+After installing all the dependencies continue with the [Install Kickstart](#Install-Kickstart) step.
+
+#### Windows Installation
+
+<details><summary>Windows with Microsoft C++ Build Tools and CMake</summary>
+Installation may require installing build tools and updating the run command for `telescope-fzf-native`
+
+See `telescope-fzf-native` documentation for [more details](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation)
+
+This requires:
+
+- Install CMake and the Microsoft C++ Build Tools on Windows
+
+Using this, you can change some plugin configurations such as `telescope-fzf-native` to use `cmake`:
+```lua
+{'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+```
+</details>
+<details><summary>Windows with gcc/make using chocolatey</summary>
+Alternatively, one can install gcc and make which don't require changing the config,
 the easiest way is to use choco:
 
 1. install [chocolatey](https://chocolatey.org/install)
@@ -115,5 +142,40 @@ open a new one so that choco path is set, and run in cmd as **admin**:
 ```
 choco install -y neovim git ripgrep wget fd unzip gzip mingw make
 ```
+</details>
+<details><summary>WSL (Windows Subsystem for Linux)</summary>
 
-Then continue with the [Install Kickstart](#Install-this-Configuration) step.
+```
+wsl --install
+wsl
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo apt update
+sudo apt install make gcc ripgrep unzip neovim
+```
+</details>
+
+#### Linux Install
+<details><summary>Ubuntu Install Steps</summary>
+
+```
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo apt update
+sudo apt install make gcc ripgrep unzip neovim
+```
+</details>
+<details><summary>Debian Install Steps</summary>
+
+```
+sudo apt update
+sudo apt install make gcc ripgrep unzip git
+echo "deb https://deb.debian.org/debian unstable main" | sudo tee -a /etc/apt/sources.list
+sudo apt update
+sudo apt install -t unstable neovim
+```
+</details>
+<details><summary>Fedora Install Steps</summary>
+
+```
+sudo dnf install -y gcc make git ripgrep fd-find neovim
+```
+</details>

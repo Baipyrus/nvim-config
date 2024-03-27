@@ -17,7 +17,7 @@ vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s'
 
 -- Format settings
 -- Make line numbers default
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Indenting
@@ -32,7 +32,7 @@ vim.opt.wrap = false
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
--- Don't show the mode, since it's already in status line
+-- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
@@ -46,7 +46,7 @@ vim.opt.breakindent = true
 -- Save undo history
 vim.opt.undofile = true
 
--- Case-insensitive searching UNLESS \C or capital in search
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
@@ -64,7 +64,7 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace in the editor.
+-- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
