@@ -16,9 +16,6 @@ require('lazy').setup({
   -- Discord RPC
   'andweeb/presence.nvim',
 
-  -- Practice games
-  'ThePrimeagen/vim-be-good',
-
   -- Processing-Java
   'sophacles/vim-processing',
 

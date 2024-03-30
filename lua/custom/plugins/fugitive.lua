@@ -11,7 +11,6 @@ return {
   -- Git related plugins
   'tpope/vim-fugitive',
   dependencies = {
-    'tpope/vim-rhubarb',
     {
       'rbong/vim-flog',
       lazy = true,
