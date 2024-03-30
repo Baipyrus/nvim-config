@@ -6,6 +6,8 @@ vim.keymap.set('n', '<leader>gF', '<cmd>Git fetch<cr>', { desc = '[G]it [F]etch'
 vim.keymap.set('n', '<leader>gP', '<cmd>Git push<cr>', { desc = '[G]it [P]ush' })
 -- Pull changes
 vim.keymap.set('n', '<leader>gp', '<cmd>Git pull<cr>', { desc = '[G]it [P]ull' })
+-- Open history graph
+vim.keymap.set('n', '<leader>gl', '<cmd>Flogsplit<cr><cmd>wincmd k<cr><cmd>q<cr>', { desc = '[G]it [L]og' })
 
 return {
   -- Git related plugins
@@ -14,7 +16,7 @@ return {
     {
       'rbong/vim-flog',
       lazy = true,
-      cmd = { 'Flog' },
+      cmd = { 'Flogsplit' },
     },
   },
 }
