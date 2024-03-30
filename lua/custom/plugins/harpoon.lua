@@ -33,5 +33,16 @@ return {
     vim.keymap.set('n', '<leader>ho', function()
       toggle_telescope(harpoon:list())
     end, { desc = '[H]arpoon [Open]' })
+    -- Append to harpoon list
+    vim.keymap.set('n', '<leader>ha', function()
+      harpoon:list():append()
+    end, { desc = '[H]arpoon [A]ppend' })
+    -- Toggle previous & next buffers stored within Harpoon list
+    vim.keymap.set('n', '<C-S-P>', function()
+      harpoon:list():prev()
+    end)
+    vim.keymap.set('n', '<C-S-N>', function()
+      harpoon:list():next()
+    end)
   end,
 }
