@@ -12,5 +12,10 @@ return {
   'tpope/vim-fugitive',
   dependencies = {
     'tpope/vim-rhubarb',
+    {
+      'rbong/vim-flog',
+      lazy = true,
+      cmd = { 'Flog', 'Flogsplit', 'Floggit' },
+    },
   },
 }

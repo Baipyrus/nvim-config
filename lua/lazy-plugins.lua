@@ -22,16 +22,6 @@ require('lazy').setup({
   -- Processing-Java
   'sophacles/vim-processing',
 
-  -- Git graph viewer
-  {
-    'rbong/vim-flog',
-    lazy = true,
-    cmd = { 'Flog', 'Flogsplit', 'Floggit' },
-    dependencies = {
-      'tpope/vim-fugitive',
-    },
-  },
-
   -- Markdown preview plugin
   {
     'iamcco/markdown-preview.nvim',
