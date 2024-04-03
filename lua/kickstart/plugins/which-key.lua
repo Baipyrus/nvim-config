@@ -35,7 +35,9 @@ return {
         ['<leader>'] = { name = 'VISUAL <leader>' },
         ['<leader>h'] = { 'Git [H]unk' },
         ['<leader>d'] = { name = '[D]elete', _ = 'which_key_ignore' },
+        ['<leader>p'] = { name = '[P]aste', _ = 'which_key_ignore' },
         ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
+        ['<leader>pn'] = { name = '[N]o', _ = 'which_key_ignore' },
       }, { mode = 'v' })
     end,
   },
