@@ -37,6 +37,10 @@ return {
     vim.keymap.set('n', '<leader>ha', function()
       harpoon:list():append()
     end, { desc = '[H]arpoon [A]ppend' })
+    -- Append to harpoon list
+    vim.keymap.set('n', '<leader>hr', function()
+      harpoon:list():remove()
+    end, { desc = '[H]arpoon [R]emove' })
     -- Toggle previous & next buffers stored within Harpoon list
     vim.keymap.set('n', '<C-S-P>', function()
       harpoon:list():prev()
