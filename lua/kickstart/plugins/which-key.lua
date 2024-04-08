@@ -26,7 +26,12 @@ return {
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-        ['<leader>dn'] = { name = '[D]elete [N]o', _ = 'which_key_ignore' },
+        ['<leader>b'] = { name = '[B]uffer/[B]reakpoint', _ = 'which_key_ignore' },
+        ['<leader>c'] = { name = '[C]ode/[C]odeium', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[D]ocument/[D]elete', _ = 'which_key_ignore' },
+        ['<leader>h'] = { name = '[H]unk/[H]arpoon', _ = 'which_key_ignore' },
+        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+        ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
       }
 
       -- register which-key VISUAL mode
@@ -36,6 +41,7 @@ return {
         ['<leader>h'] = { 'Git [H]unk' },
         ['<leader>d'] = { name = '[D]elete', _ = 'which_key_ignore' },
         ['<leader>p'] = { name = '[P]aste', _ = 'which_key_ignore' },
+        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
         ['<leader>pn'] = { name = '[N]o', _ = 'which_key_ignore' },
       }, { mode = 'v' })
