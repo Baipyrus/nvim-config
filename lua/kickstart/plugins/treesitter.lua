@@ -19,6 +19,7 @@ return {
         'vim',
         'svelte',
         'c_sharp',
+        'luadoc',
         'markdown',
         'gitcommit',
         'gitignore',
