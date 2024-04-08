@@ -1,6 +1,7 @@
 -- Smooth scroll plugin and keymaps
 return {
   'karb94/neoscroll.nvim',
+  enabled = not vim.g.neovide,
   config = function()
     require('neoscroll').setup {
       hide_cursor = false,

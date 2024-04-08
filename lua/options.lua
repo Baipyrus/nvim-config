@@ -84,4 +84,11 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 12
 
+-- Options specifically targeted at Neovide
+if vim.g.neovide then
+  vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
+  vim.g.neovide_cursor_animation_length = 0
+  vim.g.neovide_cursor_trail_length = 0
+end
+
 -- vim: ts=2 sts=2 sw=2 et
