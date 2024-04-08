@@ -87,6 +87,7 @@ vim.opt.sidescrolloff = 12
 -- Options specifically targeted at Neovide
 if vim.g.neovide then
   vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
+  vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_cursor_trail_length = 0
 end
