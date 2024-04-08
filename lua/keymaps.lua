@@ -38,7 +38,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>dny', '"_d', { desc = '[D]elete [N]o [Y]an
 vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
 
 -- Populate CMD to prepare for change directory
-vim.keymap.set('n', '<leader>cd', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
+vim.keymap.set('n', '<leader>cd ', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
 
 -- Delete current buffer without closing window
 vim.keymap.set('n', '<leader>bd', '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>', { desc = '[B]uffer [D]elete' })
