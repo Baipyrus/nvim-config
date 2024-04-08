@@ -6,6 +6,9 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
 
+-- Save start directory as base
+vim.g.base_dir = vim.fn.getcwd()
+
 -- [[ Setting options ]]
 require 'options'
 
