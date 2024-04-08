@@ -15,9 +15,6 @@ If you are experiencing issues, please make sure you have the latest versions.
 
 ### Install External Dependencies
 
-> **NOTE**
-> [Backup](#FAQ) your previous configuration (if any exists)
-
 External Requirements:
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
@@ -29,6 +26,11 @@ External Requirements:
 > **NOTE**
 > See [Install Recipes](#Install-Recipes) for additional Windows and Linux specific notes
 > and quick install snippets
+
+### Install Kickstart
+
+> **NOTE**
+> [Backup](#FAQ) your previous configuration (if any exists)
 
 Neovim's configurations are located under the following paths, depending on your OS:
 
@@ -79,7 +81,7 @@ nvim
 ```
 
 That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
-current plugin status.
+current plugin status. Hit `q` to close the window.
 
 ### FAQ
 
