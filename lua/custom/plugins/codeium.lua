@@ -3,8 +3,6 @@ vim.keymap.set('n', '<leader>cc', ':execute codeium#Chat()<Enter>', { desc = '[C
 
 return {
   -- Free Github Copilot alternative
-  {
-    'Exafunction/codeium.vim',
-    event = 'BufEnter',
-  },
+  'Exafunction/codeium.vim',
+  event = 'BufEnter',
 }
