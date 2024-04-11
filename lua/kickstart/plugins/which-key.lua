@@ -27,7 +27,7 @@ return {
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
         ['<leader>b'] = { name = '[B]uffer/[B]reakpoint', _ = 'which_key_ignore' },
-        ['<leader>c'] = { name = '[C]ode/[C]odeium', _ = 'which_key_ignore' },
+        ['<leader>c'] = { name = '[C]ode/[C]odeium/[C]hange', _ = 'which_key_ignore' },
         ['<leader>cd'] = { name = '[D]irectory', _ = 'which_key_ignore' },
         ['<leader>d'] = { name = '[D]ocument/[D]elete', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = '[H]unk/[H]arpoon', _ = 'which_key_ignore' },
