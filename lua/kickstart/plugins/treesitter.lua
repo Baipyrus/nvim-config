@@ -26,6 +26,9 @@ return {
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
+      ignore_install = {
+        'arduino',
+      },
       -- Enable autotags and -rename
       autotag = {
         enable = true,
