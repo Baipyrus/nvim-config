@@ -48,6 +48,11 @@ vim.keymap.set('n', '<leader>bd', '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>', { desc = '
 vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = '[B]uffer [P]revious' })
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = '[B]uffer [N]ext' })
 
+-- Navigate quickfix list
+vim.keymap.set('n', '<leader>lo', '<cmd>copen<cr>', { desc = 'Quickfix [L]ist [O]pen' })
+vim.keymap.set('n', '<C-S-j>', '<cmd>cnext<cr>')
+vim.keymap.set('n', '<C-S-k>', '<cmd>cprev<cr>')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
