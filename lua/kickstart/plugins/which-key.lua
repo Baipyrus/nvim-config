@@ -33,6 +33,7 @@ return {
         ['<leader>h'] = { name = 'Git [H]unk/[H]arpoon', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
+        ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
       }
 
       -- register which-key VISUAL mode
@@ -45,6 +46,7 @@ return {
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
         ['<leader>pn'] = { name = '[N]o', _ = 'which_key_ignore' },
+        ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
       }, { mode = 'v' })
     end,
   },
