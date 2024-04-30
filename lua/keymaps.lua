@@ -53,6 +53,14 @@ vim.keymap.set('n', '<leader>lo', '<cmd>copen<cr>', { desc = 'Quickfix [L]ist [O
 vim.keymap.set('n', '<C-S-j>', '<cmd>cnext<cr>')
 vim.keymap.set('n', '<C-S-k>', '<cmd>cprev<cr>')
 
+if vim.g.neovide then
+  -- System clipboard keybinds in normal and visual mode
+  vim.keymap.set({ 'n', 'v' }, '<C-S-C>', '"+y', { desc = 'Yank to System clipboard' })
+  vim.keymap.set({ 'n', 'v' }, '<C-S-V>', '"+p', { desc = 'Paste from System clipboard' })
+  -- Clipboard for command mode
+  vim.keymap.set('c', '<C-S-V>', '<C-R>+', { desc = 'Paste from System clipboard' })
+end
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
