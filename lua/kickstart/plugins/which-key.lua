@@ -34,6 +34,7 @@ return {
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
+        ['<leader>f'] = { name = '[F]ormat/[F]ile', _ = 'which_key_ignore' },
       }
 
       -- register which-key VISUAL mode
@@ -47,6 +48,7 @@ return {
         ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
         ['<leader>pn'] = { name = '[N]o', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
+        ['<leader>f'] = { name = '[F]ormat/[F]ile', _ = 'which_key_ignore' },
       }, { mode = 'v' })
     end,
   },
