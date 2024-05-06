@@ -7,13 +7,15 @@
 vim.api.nvim_exec2('language en_US', {})
 
 -- Shell options
--- Sets the shell to use for system() and ! commands
-vim.opt.shell = 'powershell.exe'
-vim.opt.shellcmdflag = '-NonInteractive -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
-vim.opt.shellxquote = ''
-vim.opt.shellquote = ''
-vim.opt.shellredir = '2>&1 | Out-File -Encoding UTF8 %s'
-vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s'
+-- Sets the shell to use for system() and ! commands in windows
+if vim.fn.has 'win32' then
+  vim.opt.shell = 'powershell.exe'
+  vim.opt.shellcmdflag = '-NonInteractive -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
+  vim.opt.shellxquote = ''
+  vim.opt.shellquote = ''
+  vim.opt.shellredir = '2>&1 | Out-File -Encoding UTF8 %s'
+  vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s'
+end
 
 -- Format settings
 -- Make line numbers default
