@@ -84,6 +84,9 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 12
 
+-- Set cursor pointer to block
+vim.opt.guicursor = 'n-v-i-c:block-Cursor'
+
 -- Options specifically targeted at Neovide
 if vim.g.neovide then
   vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
