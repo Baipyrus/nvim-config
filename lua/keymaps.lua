@@ -61,10 +61,10 @@ vim.keymap.set({ 'n', 'v' }, '<M-->', '<C-W>-')
 
 if vim.g.neovide then
   -- System clipboard keybinds in normal and visual mode
-  vim.keymap.set({ 'n', 'v' }, '<C-S-C>', '"+y', { desc = 'Yank to System clipboard' })
-  vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-V>', '"+p', { desc = 'Paste from System clipboard' })
+  vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"+y', { desc = 'Yank to System clipboard' })
+  vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from System clipboard' })
   -- Clipboard for command mode
-  vim.keymap.set('c', '<C-S-V>', '<C-R>+', { desc = 'Paste from System clipboard' })
+  vim.keymap.set('c', '<C-S-v>', '<C-R>+', { desc = 'Paste from System clipboard' })
 end
 
 -- [[ Basic Autocommands ]]
