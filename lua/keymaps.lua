@@ -53,6 +53,12 @@ vim.keymap.set('n', '<leader>lo', '<cmd>copen<cr>', { desc = 'Quickfix [L]ist [O
 vim.keymap.set('n', '<C-S-j>', '<cmd>cnext<cr>')
 vim.keymap.set('n', '<C-S-k>', '<cmd>cprev<cr>')
 
+-- Resizing windows
+vim.keymap.set({ 'n', 'v' }, '<M-,>', '<C-W><')
+vim.keymap.set({ 'n', 'v' }, '<M-.>', '<C-W>>')
+vim.keymap.set({ 'n', 'v' }, '<M-=>', '<C-W>+')
+vim.keymap.set({ 'n', 'v' }, '<M-->', '<C-W>-')
+
 if vim.g.neovide then
   -- System clipboard keybinds in normal and visual mode
   vim.keymap.set({ 'n', 'v' }, '<C-S-C>', '"+y', { desc = 'Yank to System clipboard' })
