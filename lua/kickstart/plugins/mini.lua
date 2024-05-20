@@ -17,12 +17,6 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple file explorer with in-buffer-editing
-      require('mini.files').setup()
-      vim.keymap.set({ 'n', 'v' }, '<leader>fe', function()
-        MiniFiles.open()
-      end, { desc = '[F]ile [E]xplorer' })
-
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
