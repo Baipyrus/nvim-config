@@ -10,6 +10,11 @@ return {
       -- Load the colorscheme here.
       vim.cmd.colorscheme 'catppuccin-mocha'
 
+      -- Toggle light/dark mode with mocha/latte
+      vim.keymap.set('n', '<leader>tt', function()
+        vim.cmd.colorscheme(vim.o.background == 'dark' and 'catppuccin-latte' or 'catppuccin-mocha')
+      end, { desc = '[T]oggle [T]heme' })
+
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
