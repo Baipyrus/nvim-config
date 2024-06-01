@@ -32,6 +32,8 @@ return {
       -- Enable autotags and -rename
       autotag = {
         enable = true,
+        enable_close = true,
+        enable_rename = true,
         enable_autocmd = true,
       },
       highlight = {
