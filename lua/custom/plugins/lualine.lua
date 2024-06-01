@@ -6,8 +6,8 @@ return {
     options = {
       icons_enabled = vim.g.have_nerd_font,
       theme = 'catppuccin',
-      component_separators = '|',
-      section_separators = ' ',
+      section_separators = { left = '', right = '' },
+      component_separators = { left = '', right = '' },
     },
   },
 }
