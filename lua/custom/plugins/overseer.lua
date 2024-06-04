@@ -3,10 +3,13 @@ return {
   'stevearc/overseer.nvim',
   opts = {},
   config = function(_, opts)
-    require('overseer').setup(opts or {})
+    local overseer = require 'overseer'
+    overseer.setup(opts or {})
 
     -- Display status info about tasks
-    vim.keymap.set('n', '<leader>ol', '<cmd>OverseerToggle<cr>', { desc = '[O]verseer [L]og' })
+    vim.keymap.set('n', '<leader>ol', function()
+      overseer.toggle { winid = 0 }
+    end, { desc = '[O]verseer [L]og' })
     -- Run task by listing all in floating
     vim.keymap.set('n', '<leader>or', '<cmd>OverseerRun<cr>', { desc = '[O]verseer [R]un' })
   end,
