@@ -35,6 +35,7 @@ return {
         ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
         ['<leader>f'] = { name = '[F]ormat/[F]ile', _ = 'which_key_ignore' },
+        ['<leader>o'] = { name = '[O]verseer', _ = 'which_key_ignore' },
       }
 
       -- register which-key VISUAL mode
