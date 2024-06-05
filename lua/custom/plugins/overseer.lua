@@ -2,9 +2,15 @@ return {
   -- Simple task runner plugin
   'stevearc/overseer.nvim',
   opts = {},
-  config = function(_, opts)
+  config = function()
     local overseer = require 'overseer'
-    overseer.setup(opts or {})
+    overseer.setup {
+      templates = {
+        'builtin',
+        'golang.run_project',
+        'golang.run_file',
+      },
+    }
 
     -- Display status info about tasks
     vim.keymap.set('n', '<leader>ol', function()
