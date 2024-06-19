@@ -41,6 +41,8 @@ vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
 vim.keymap.set('n', '<leader>cd ', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
 -- Navigate to 'base' directory, the initial dir that nvim was run in
 vim.keymap.set('n', '<leader>cdh', '<cmd>cd ' .. vim.g.base_dir .. '<cr>', { desc = '[C]hange [D]irectory to [H]ome' })
+-- Automatically navigate to config directory
+vim.keymap.set('n', '<leader>cdn', '<cmd>cd ' .. vim.fn.stdpath 'config' .. '<cr>', { desc = '[C]hange [D]irectory to [N]eovim' })
 
 -- Delete current buffer without closing window
 vim.keymap.set('n', '<leader>bd', '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>', { desc = '[B]uffer [D]elete' })
