@@ -61,11 +61,31 @@ vim.keymap.set({ 'n', 'v' }, '<M-.>', '<C-W>>')
 vim.keymap.set({ 'n', 'v' }, '<M-=>', '<C-W>+')
 vim.keymap.set({ 'n', 'v' }, '<M-->', '<C-W>-')
 
+local function get_visual_selection()
+  -- Get selection position
+  local s_start = vim.fn.getpos "'<"
+  local s_end = vim.fn.getpos "'>"
+  -- Get line count
+  local n_lines = math.abs(s_end[2] - s_start[2]) + 1
+  -- Read lines from buffer
+  local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
+  -- Subtract unselected sections from lines
+  lines[1] = string.sub(lines[1], s_start[3], -1)
+  if n_lines == 1 then
+    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
+  else
+    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
+  end
+  -- Return selected
+  return lines
+end
+
 local function global_cmd_yank()
   -- Get the (selected) lines
   local lines = nil
   local mode = vim.api.nvim_get_mode()['mode']
   if string.find(mode:lower(), '^v') then
+    lines = get_visual_selection()
   else
     lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   end
