@@ -83,6 +83,7 @@ end
 local function global_cmd_yank()
   -- Prompt user input for expression
   local inexpr = vim.fn.input 'Enter expression: '
+  local outsep = vim.fn.input 'Enter separator: '
 
   -- Get the (selected) lines
   local lines = nil
@@ -98,6 +99,11 @@ local function global_cmd_yank()
   local extracted = vim.tbl_map(function(value)
     return value['text']
   end, matches)
+
+  -- Concat matches according to separator
+  local value = table.concat(extracted, outsep)
+  -- Write to system register
+  vim.fn.setreg('+', value)
 end
 
 vim.keymap.set({ 'n', 'v' }, '<leader>gy', global_cmd_yank, { desc = '[G]lobal command [Y]ank' })
