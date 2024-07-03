@@ -81,6 +81,9 @@ local function get_visual_selection()
 end
 
 local function global_cmd_yank()
+  -- Prompt user input for expression
+  local inexpr = vim.fn.input 'Enter expression: '
+
   -- Get the (selected) lines
   local lines = nil
   local mode = vim.api.nvim_get_mode()['mode']
@@ -89,6 +92,12 @@ local function global_cmd_yank()
   else
     lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   end
+
+  -- Apply expression on all lines
+  local matches = vim.fn.matchstrlist(lines, inexpr)
+  local extracted = vim.tbl_map(function(value)
+    return value['text']
+  end, matches)
 end
 
 vim.keymap.set({ 'n', 'v' }, '<leader>gy', global_cmd_yank, { desc = '[G]lobal command [Y]ank' })
