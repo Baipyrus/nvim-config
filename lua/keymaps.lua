@@ -61,6 +61,18 @@ vim.keymap.set({ 'n', 'v' }, '<M-.>', '<C-W>>')
 vim.keymap.set({ 'n', 'v' }, '<M-=>', '<C-W>+')
 vim.keymap.set({ 'n', 'v' }, '<M-->', '<C-W>-')
 
+local function global_cmd_yank()
+  -- Get the (selected) lines
+  local lines = nil
+  local mode = vim.api.nvim_get_mode()['mode']
+  if string.find(mode:lower(), '^v') then
+  else
+    lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  end
+end
+
+vim.keymap.set({ 'n', 'v' }, '<leader>gy', global_cmd_yank, { desc = '[G]lobal command [Y]ank' })
+
 if vim.g.neovide then
   -- System clipboard keybinds in normal and visual mode
   vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"+y', { desc = 'Yank to System clipboard' })

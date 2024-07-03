@@ -25,7 +25,7 @@ return {
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+        ['<leader>g'] = { name = '[G]it/[G]lobal', _ = 'which_key_ignore' },
         ['<leader>b'] = { name = '[B]uffer/[B]reakpoint', _ = 'which_key_ignore' },
         ['<leader>c'] = { name = '[C]ode/[C]odeium/[C]hange', _ = 'which_key_ignore' },
         ['<leader>cd'] = { name = '[D]irectory', _ = 'which_key_ignore' },
@@ -50,6 +50,7 @@ return {
         ['<leader>pn'] = { name = '[N]o', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
         ['<leader>f'] = { name = '[F]ormat/[F]ile', _ = 'which_key_ignore' },
+        ['<leader>g'] = { name = '[G]lobal', _ = 'which_key_ignore' },
       }, { mode = 'v' })
     end,
   },
