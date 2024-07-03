@@ -102,8 +102,12 @@ local function global_cmd_yank()
 
   -- Concat matches according to separator
   local value = table.concat(extracted, outsep)
+  -- Trigger global search to highlight results
+  vim.cmd('g/' .. inexpr .. '/')
   -- Write to system register
   vim.fn.setreg('+', value)
+
+  print('Found ' .. #extracted .. ' results!')
 end
 
 vim.keymap.set({ 'n', 'v' }, '<leader>gy', global_cmd_yank, { desc = '[G]lobal command [Y]ank' })
