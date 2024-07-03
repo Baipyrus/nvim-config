@@ -1,3 +1,13 @@
+-- Fix oil absolute path to relative path conversion
+vim.api.nvim_create_augroup('OilRelPathFix', {})
+vim.api.nvim_create_autocmd('BufLeave', {
+  group = 'OilRelPathFix',
+  pattern = 'oil:///*',
+  callback = function()
+    vim.cmd 'cd .'
+  end,
+})
+
 return {
   'stevearc/oil.nvim',
   opts = {},
