@@ -16,11 +16,8 @@ require('lazy').setup({
   -- Discord RPC
   'andweeb/presence.nvim',
 
-  -- Processing-Java
-  'sophacles/vim-processing',
-
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'sophacles/vim-processing', -- Processing-Java
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
