@@ -112,6 +112,15 @@ end
 
 vim.keymap.set({ 'n', 'v' }, '<leader>gy', global_cmd_yank, { desc = '[G]lobal command [Y]ank' })
 
+-- Fix filename keymap
+vim.keymap.set({ 'n', 'v' }, '<leader>fp', function()
+  -- lua print(string.gsub(vim.api.nvim_buf_get_name(0), vim.fn.getcwd(), ''))
+  local cwd = vim.fn.getcwd()
+  local path = vim.api.nvim_buf_get_name(0)
+  local file, _ = string.gsub(path, cwd .. '\\', '')
+  vim.cmd('0f | file ' .. file)
+end, { desc = '[F]ile Fix Relative [P]ath' })
+
 if vim.g.neovide then
   -- System clipboard keybinds in normal and visual mode
   vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"+y', { desc = 'Yank to System clipboard' })
