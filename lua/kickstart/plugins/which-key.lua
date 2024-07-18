@@ -19,39 +19,25 @@ return {
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
-
       -- Document existing key chains
-      require('which-key').register {
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[G]it/[G]lobal', _ = 'which_key_ignore' },
-        ['<leader>b'] = { name = '[B]uffer/[B]reakpoint', _ = 'which_key_ignore' },
-        ['<leader>c'] = { name = '[C]ode/[C]odeium/[C]hange', _ = 'which_key_ignore' },
-        ['<leader>cd'] = { name = '[D]irectory', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument/[D]elete', _ = 'which_key_ignore' },
-        ['<leader>h'] = { name = 'Git [H]unk/[H]arpoon', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-        ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
-        ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
-        ['<leader>f'] = { name = '[F]ormat/[F]ile', _ = 'which_key_ignore' },
-        ['<leader>o'] = { name = '[O]verseer', _ = 'which_key_ignore' },
+      require('which-key').add {
+        { '<leader>c', group = '[C]ode-/[C]hange' },
+        { '<leader>d', group = '[D]ocument/[D]elete', mode = { 'n', 'v' } },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>t', group = '[T]oggle', mode = { 'n', 'v' } },
+        { '<leader>h', group = 'Git [H]unk/[H]arpoon', mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it/[G]lobal', mode = { 'n', 'v' } },
+        { '<leader>b', group = '[B]uffer/[B]reakpoint' },
+        { '<leader>cd', group = '[D]irectory' },
+        { '<leader>dn', group = '[N]o', mode = { 'n', 'v' } },
+        { '<leader>l', group = '[L]ist', mode = { 'n', 'v' } },
+        { '<leader>f', group = '[F]ormat/[F]ile', mode = { 'n', 'v' } },
+        { '<leader>o', group = '[O]verseer', mode = { 'n', 'v' } },
+        { '<leader>p', group = '[P]aste', mode = { 'v' } },
+        { '<leader>pn', group = '[N]o', mode = { 'v' } },
       }
-
-      -- register which-key VISUAL mode
-      -- required for visual <leader>hs (hunk stage) to work
-      require('which-key').register({
-        ['<leader>'] = { name = 'VISUAL <leader>' },
-        ['<leader>h'] = { 'Git [H]unk' },
-        ['<leader>d'] = { name = '[D]elete', _ = 'which_key_ignore' },
-        ['<leader>p'] = { name = '[P]aste', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-        ['<leader>dn'] = { name = '[N]o', _ = 'which_key_ignore' },
-        ['<leader>pn'] = { name = '[N]o', _ = 'which_key_ignore' },
-        ['<leader>l'] = { name = '[L]ist', _ = 'which_key_ignore' },
-        ['<leader>f'] = { name = '[F]ormat/[F]ile', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[G]lobal', _ = 'which_key_ignore' },
-      }, { mode = 'v' })
     end,
   },
 }
