@@ -23,6 +23,7 @@ return {
         'markdown',
         'gitcommit',
         'gitignore',
+        'html',
         'php',
       },
       -- Autoinstall languages that are not installed
