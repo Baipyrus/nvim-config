@@ -10,6 +10,15 @@ return {
         'golang.run_project',
         'golang.run_file',
       },
+      task_list = {
+        bindings = {
+          ['<C-h>'] = false,
+          ['<C-j>'] = false,
+          ['<C-k>'] = false,
+          ['<C-l>'] = false,
+          ['q'] = false,
+        },
+      },
     }
 
     -- Reference: overseer.nvim/lua/overseer/window.lua
