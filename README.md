@@ -38,8 +38,8 @@ Neovim's configurations are located under the following paths, depending on your
 | OS | PATH |
 | :- | :--- |
 | Linux, MacOS | `$XDG_CONFIG_HOME/nvim`, `~/.config/nvim` |
-| Windows (cmd)| `%userprofile%\AppData\Local\nvim\` |
-| Windows (powershell)| `$env:USERPROFILE\AppData\Local\nvim\` |
+| Windows (cmd)| `%localappdata%\nvim\` |
+| Windows (powershell)| `$env:LOCALAPPDATA\nvim\` |
 
 ### Install this Configuration
 
@@ -58,13 +58,13 @@ git clone https://github.com/Baipyrus/nvim-config.git "${XDG_CONFIG_HOME:-$HOME/
 If you're using `cmd.exe`:
 
 ```bat
-git clone https://github.com/Baipyrus/nvim-config.git %userprofile%\AppData\Local\nvim\
+git clone https://github.com/Baipyrus/nvim-config.git %localappdata%\nvim\
 ```
 
 If you're using `powershell.exe`
 
 ```pwsh
-git clone https://github.com/Baipyrus/nvim-config.git $env:USERPROFILE\AppData\Local\nvim\
+git clone https://github.com/Baipyrus/nvim-config.git $env:LOCALAPPDATA\nvim\
 ```
 
 </details>
