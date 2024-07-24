@@ -10,6 +10,7 @@ return {
     build = ':TSUpdate',
     opts = {
       ensure_installed = {
+        -- kickstart
         'bash',
         'c',
         'diff',
@@ -21,16 +22,17 @@ return {
         'query',
         'vim',
         'vimdoc',
-
+        -- webdev
         'javascript',
         'typescript',
         'svelte',
         'php',
-
+        -- other
         'python',
         'rust',
         'c_sharp',
-
+        'go',
+        -- git
         'gitcommit',
         'gitignore',
       },
