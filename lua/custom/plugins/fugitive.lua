@@ -18,5 +18,6 @@ return {
       lazy = true,
       cmd = { 'Flogsplit' },
     },
+    'idanarye/vim-merginal',
   },
 }
