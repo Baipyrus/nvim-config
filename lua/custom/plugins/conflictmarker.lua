@@ -22,9 +22,10 @@ return {
       -- Check if strict regex is contained in any line
       local beginning = vim.fn.match(lines, vim.g.conflict_marker_begin)
       local ending = vim.fn.match(lines, vim.g.conflict_marker_end)
-      if beginning > -1 or ending > -1 then
+      local enabled = vim.diagnostic.is_enabled()
+      if (beginning > -1 or ending > -1) and enabled then
         vim.diagnostic.enable(false)
-      else
+      elseif not enabled then
         vim.diagnostic.enable(true)
       end
     end

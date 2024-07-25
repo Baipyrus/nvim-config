@@ -1,9 +1,7 @@
 return {
-
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
-      'windwp/nvim-ts-autotag',
       'nvim-treesitter/nvim-treesitter-context',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -40,13 +38,6 @@ return {
       auto_install = true,
       ignore_install = {
         'arduino',
-      },
-      -- Enable autotags and -rename
-      autotag = {
-        enable = true,
-        enable_close = true,
-        enable_rename = true,
-        enable_autocmd = true,
       },
       highlight = {
         enable = true,

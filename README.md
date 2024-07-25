@@ -20,7 +20,7 @@ External Requirements:
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - Clipboard tool (xclip/xsel/win32yank or other depending on platform)
 - A [Nerd Font](https://www.nerdfonts.com/): provides various icons
-- Language utils: `rustup`, `npm`, `dotnet`, `python`
+- Language utils: `rustup`, `npm`, `dotnet`, `python`, `golang`, `composer`
 - Optionally, install [Alacritty](https://github.com/alacritty/alacritty#installation)
   - Or on Windows, just install using `winget install alacritty --source winget`
 
@@ -28,7 +28,7 @@ External Requirements:
 > See [Install Recipes](#Install-Recipes) for additional Windows and Linux specific notes
 > and quick install snippets
 
-### Install Kickstart
+### Install Config
 
 > **NOTE**
 > [Backup](#FAQ) your previous configuration (if any exists)
@@ -41,7 +41,7 @@ Neovim's configurations are located under the following paths, depending on your
 | Windows (cmd)| `%localappdata%\nvim\` |
 | Windows (powershell)| `$env:LOCALAPPDATA\nvim\` |
 
-### Install this Configuration
+#### Recommended Step
 
 Clone it from GitHub:
 
@@ -70,10 +70,6 @@ git clone https://github.com/Baipyrus/nvim-config.git $env:LOCALAPPDATA\nvim\
 </details>
 
 ### Post Installation
-
-<details><summary> Extras for Linux and Mac </summary>
-In the [`options`](./lua/options.lua) file, change the settings to specify the terminal of your choice. This installation is used and maintained by a Windows user and, as such, will use Powershell. This setting may need to be updated after each upgrade.
-</details>
 
 Start Neovim
 
@@ -104,6 +100,8 @@ current plugin status. Hit `q` to close the window.
     ```pwsh
     $env:NVIM_APPNAME = 'nvim-kickstart'; nvim
     ```
+    You can apply both of these approaches to any Neovim
+    distribution that you would like to try out.
 * What if I want to "uninstall" this configuration:
   * See [lazy.nvim uninstall](https://github.com/folke/lazy.nvim#-uninstalling) information
 

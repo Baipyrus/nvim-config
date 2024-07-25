@@ -214,6 +214,9 @@ return {
         'eslint_d',
         'prettier',
         'prettierd',
+        'markdownlint',
+        'isort',
+        'black',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

@@ -26,7 +26,7 @@ return {
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle', mode = { 'n', 'v' } },
+        { '<leader>t', group = '[T]oggle/[T]erminal', mode = { 'n', 'v' } },
         { '<leader>h', group = 'Git [H]unk/[H]arpoon', mode = { 'n', 'v' } },
         { '<leader>g', group = '[G]it/[G]lobal', mode = { 'n', 'v' } },
         { '<leader>b', group = '[B]uffer/[B]reakpoint' },
