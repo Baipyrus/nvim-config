@@ -199,6 +199,14 @@ return {
         },
       }
 
+      local function jdtls_setup()
+        local config = {
+          cmd = { require('mason-registry').get_package('jdtls'):get_install_path() .. '/bin/jdtls' },
+          root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+        }
+        require('jdtls').start_or_attach(config)
+      end
+
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -226,6 +234,7 @@ return {
         handlers = {
           function(server_name)
             if server_name == 'jdtls' then
+              jdtls_setup()
               return
             end
 
