@@ -262,7 +262,12 @@ return {
             bundles = {},
           },
         }
-        require('jdtls').start_or_attach(config)
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'java',
+          callback = function()
+            require('jdtls').start_or_attach(config)
+          end,
+        })
       end
 
       -- Ensure the servers and tools above are installed
