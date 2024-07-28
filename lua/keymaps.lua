@@ -41,7 +41,9 @@ vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
 -- Populate CMD to prepare for change directory
 vim.keymap.set('n', '<leader>cd ', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
 -- Navigate to 'base' directory, the initial dir that nvim was run in
-vim.keymap.set('n', '<leader>cdh', '<cmd>cd ' .. vim.g.base_dir .. '<cr>', { desc = '[C]hange [D]irectory to [H]ome' })
+vim.keymap.set('n', '<leader>cdb', '<cmd>cd ' .. vim.g.base_dir .. '<cr>', { desc = '[C]hange [D]irectory to [B]ase directory' })
+-- Navigate to 'user home' directory
+vim.keymap.set('n', '<leader>cdh', '<cmd>cd ' .. vim.env.HOME .. '<cr>', { desc = '[C]hange [D]irectory to [H]ome' })
 -- Automatically navigate to config directory
 vim.keymap.set('n', '<leader>cdn', '<cmd>cd ' .. vim.fn.stdpath 'config' .. '<cr>', { desc = '[C]hange [D]irectory to [N]eovim' })
 
