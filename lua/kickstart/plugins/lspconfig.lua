@@ -200,72 +200,76 @@ return {
       }
 
       local function jdtls_setup()
-        local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-        -- calculate workspace dir
-        local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. project_name
-        -- get the mason install path
-        local install_path = require('mason-registry').get_package('jdtls'):get_install_path()
-        local jdtls_path = vim.fn.glob(install_path .. '/plugins/org.eclipse.equinox.launcher_*.jar')
+        --- @param workspace_dir string
+        local function generate_config(workspace_dir)
+          -- get the mason install path
+          local install_path = require('mason-registry').get_package('jdtls'):get_install_path()
+          local jdtls_path = vim.fn.glob(install_path .. '/plugins/org.eclipse.equinox.launcher_*.jar')
 
-        -- try to detect sysname for config
-        local sysname = 'win'
-        if vim.fn.has 'unix' then
-          sysname = 'linux'
-        elseif vim.fn.has 'mac' then
-          sysname = 'mac'
+          -- try to detect sysname for config
+          local sysname = 'win'
+          if vim.fn.has 'unix' then
+            sysname = 'linux'
+          elseif vim.fn.has 'mac' then
+            sysname = 'mac'
+          end
+          -- set default config according to sysname
+          local config_path = install_path .. '/config_' .. sysname
+
+          -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
+          local config = {
+            -- The command that starts the language server
+            -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
+            cmd = {
+              'java',
+
+              '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+              '-Dosgi.bundles.defaultStartLevel=4',
+              '-Declipse.product=org.eclipse.jdt.ls.core.product',
+              '-Dlog.protocol=true',
+              '-Dlog.level=ALL',
+              '-Xmx1g',
+              '--add-modules=ALL-SYSTEM',
+              '--add-opens',
+              'java.base/java.util=ALL-UNNAMED',
+              '--add-opens',
+              'java.base/java.lang=ALL-UNNAMED',
+
+              '-jar',
+              jdtls_path,
+
+              '-configuration',
+              config_path,
+
+              '-data',
+              workspace_dir,
+            },
+
+            capabilities = capabilities,
+            root_dir = vim.fs.root(0, { '.git', 'mvnw', 'gradlew' }),
+
+            -- Here you can configure eclipse.jdt.ls specific settings
+            -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+            -- for a list of options
+            settings = {
+              java = {},
+            },
+
+            -- Language server `initializationOptions`
+            -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
+            init_options = {
+              bundles = {},
+            },
+          }
+          return config
         end
-        -- set default config according to sysname
-        local config_path = install_path .. '/config_' .. sysname
-
-        -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
-        local config = {
-          -- The command that starts the language server
-          -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-          cmd = {
-            'java',
-
-            '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-            '-Dosgi.bundles.defaultStartLevel=4',
-            '-Declipse.product=org.eclipse.jdt.ls.core.product',
-            '-Dlog.protocol=true',
-            '-Dlog.level=ALL',
-            '-Xmx1g',
-            '--add-modules=ALL-SYSTEM',
-            '--add-opens',
-            'java.base/java.util=ALL-UNNAMED',
-            '--add-opens',
-            'java.base/java.lang=ALL-UNNAMED',
-
-            '-jar',
-            jdtls_path,
-
-            '-configuration',
-            config_path,
-
-            '-data',
-            workspace_dir,
-          },
-
-          capabilities = capabilities,
-          root_dir = vim.fs.root(0, { '.git', 'mvnw', 'gradlew' }),
-
-          -- Here you can configure eclipse.jdt.ls specific settings
-          -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-          -- for a list of options
-          settings = {
-            java = {},
-          },
-
-          -- Language server `initializationOptions`
-          -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-          init_options = {
-            bundles = {},
-          },
-        }
         vim.api.nvim_create_autocmd('FileType', {
           pattern = 'java',
           callback = function()
-            require('jdtls').start_or_attach(config)
+            local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+            -- calculate workspace dir
+            local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. project_name
+            require('jdtls').start_or_attach(generate_config(workspace_dir))
           end,
         })
       end
