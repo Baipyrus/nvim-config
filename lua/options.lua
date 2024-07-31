@@ -92,12 +92,17 @@ vim.opt.sidescrolloff = 12
 -- Set cursor pointer to block
 vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 
--- Options specifically targeted at Neovide
-if vim.g.neovide then
-  vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_cursor_animation_length = 0
-  vim.g.neovide_cursor_trail_length = 0
-end
+vim.api.nvim_create_autocmd('UIEnter', {
+  group = vim.api.nvim_create_augroup('SetGUISettings', { clear = true }),
+  callback = function()
+    -- Options specifically targeted at Neovide
+    if vim.g.neovide then
+      vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
+      vim.g.neovide_hide_mouse_when_typing = true
+      vim.g.neovide_cursor_animation_length = 0
+      vim.g.neovide_cursor_trail_length = 0
+    end
+  end,
+})
 
 -- vim: ts=2 sts=2 sw=2 et
