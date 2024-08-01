@@ -5,17 +5,17 @@ vim.g.conflict_marker_highlight_group = ''
 vim.g.conflict_marker_begin = '^<<<<<<< .*$'
 vim.g.conflict_marker_end = '^>>>>>>> .*$'
 
--- Highlight groups
-vim.cmd 'highlight ConflictMarkerBegin guibg=#2f7366'
-vim.cmd 'highlight ConflictMarkerOurs guibg=#2e5049'
-vim.cmd 'highlight ConflictMarkerTheirs guibg=#344f69'
-vim.cmd 'highlight ConflictMarkerEnd guibg=#2f628e'
-vim.cmd 'highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81'
-
 -- Git conflict marker management plugin
 return {
   'rhysd/conflict-marker.vim',
   config = function()
+    -- Highlight groups
+    vim.cmd 'highlight ConflictMarkerBegin guibg=#2f7366'
+    vim.cmd 'highlight ConflictMarkerOurs guibg=#2e5049'
+    vim.cmd 'highlight ConflictMarkerTheirs guibg=#344f69'
+    vim.cmd 'highlight ConflictMarkerEnd guibg=#2f628e'
+    vim.cmd 'highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81'
+
     -- Read all lines in buffer, check if there is any conflict marker
     function git_conflict_detection()
       local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
