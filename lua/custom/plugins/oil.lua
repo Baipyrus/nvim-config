@@ -13,11 +13,19 @@ return {
   -- Optional dependencies
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    require('oil').setup({
+    local oil = require 'oil'
+    oil.setup {
       view_options = {
-        show_hidden = true
-      }
-    })
-    vim.keymap.set('n', '<leader>fe', require('oil').open, { desc = '[F]ile [E]xplorer' })
+        show_hidden = true,
+      },
+    }
+
+    vim.keymap.set('n', '<leader>fe', function()
+      if vim.bo.filetype == 'oil' then
+        oil.close()
+      else
+        oil.open()
+      end
+    end, { desc = '[F]ile [E]xplorer' })
   end,
 }
