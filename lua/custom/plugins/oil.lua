@@ -10,11 +10,14 @@ vim.api.nvim_create_autocmd('BufLeave', {
 
 return {
   'stevearc/oil.nvim',
-  opts = {},
   -- Optional dependencies
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    require('oil').setup()
+    require('oil').setup({
+      view_options = {
+        show_hidden = true
+      }
+    })
     vim.keymap.set('n', '<leader>fe', require('oil').open, { desc = '[F]ile [E]xplorer' })
   end,
 }
