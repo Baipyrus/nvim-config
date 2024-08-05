@@ -137,6 +137,8 @@ if vim.g.neovide then
   vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from System clipboard' })
   -- Clipboard for command and insert mode
   vim.keymap.set({ 'c', 'i' }, '<C-S-v>', '<C-R>+', { desc = 'Paste from System clipboard' })
+  -- Clipboard for terminal mode
+  vim.keymap.set({ 't' }, '<C-S-v>', '<C-\\><C-n>"+pi', { desc = 'Paste from System clipboard' })
 end
 
 -- [[ Basic Autocommands ]]
