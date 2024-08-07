@@ -35,6 +35,12 @@ return {
 
       -- Display status info about tasks
       vim.keymap.set('n', '<leader>ol', function()
+        local curWindows = #vim.api.nvim_tabpage_list_wins(0)
+        if curWindows ~= (is_open() and 2 or 1) then
+          vim.cmd 'OverseerToggle'
+          return
+        end
+
         overseer.toggle { winid = 0 }
         local bufnr = vim.api.nvim_get_current_buf()
         if is_open() then
