@@ -36,10 +36,11 @@ return {
       -- Display status info about tasks
       vim.keymap.set('n', '<leader>ol', function()
         overseer.toggle { winid = 0 }
+        local bufnr = vim.api.nvim_get_current_buf()
         if is_open() then
           vim.cmd.winc '_'
-        else
-          vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), {})
+        elseif vim.bo[bufnr].filetype == '' and vim.bo.buftype ~= 'terminal' then
+          vim.api.nvim_buf_delete(bufnr, {})
         end
       end, { desc = '[O]verseer [L]og' })
       -- Run task by listing all in floating
