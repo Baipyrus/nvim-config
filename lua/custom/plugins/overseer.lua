@@ -35,17 +35,22 @@ return {
 
       -- Display status info about tasks
       vim.keymap.set('n', '<leader>ol', function()
+        -- Get currently open windows (detects splits)
         local curWindows = #vim.api.nvim_tabpage_list_wins(0)
+        -- Use builtin toggle if already using splits
         if curWindows ~= (is_open() and 2 or 1) then
           vim.cmd 'OverseerToggle'
           return
         end
 
+        -- Otherwise, toggle overseer in fullscreen
         overseer.toggle { winid = 0 }
         local bufnr = vim.api.nvim_get_current_buf()
         if is_open() then
+          -- Maximize height
           vim.cmd.winc '_'
         elseif vim.bo[bufnr].filetype == '' and vim.bo.buftype ~= 'terminal' then
+          -- Delete empty buffer created by overseer
           vim.api.nvim_buf_delete(bufnr, {})
         end
       end, { desc = '[O]verseer [L]og' })
