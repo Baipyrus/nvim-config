@@ -21,6 +21,8 @@ return {
       vim.keymap.set('n', '<leader>gp', '<cmd>Git pull<cr>', { desc = '[G]it [P]ull' })
       -- Open history graph
       vim.keymap.set('n', '<leader>gl', '<cmd>Flogsplit<cr><cmd>wincmd k<cr><cmd>q<cr>', { desc = '[G]it [L]og' })
+      -- Open branch manager
+      vim.keymap.set('n', '<leader>gm', '<cmd>Merginal<cr>', { desc = '[G]it [M]erginal' })
     end,
   },
 }
