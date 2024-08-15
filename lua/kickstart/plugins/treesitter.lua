@@ -30,6 +30,7 @@ return {
         'rust',
         'c_sharp',
         'go',
+        'powershell',
         -- git
         'gitcommit',
         'gitignore',
