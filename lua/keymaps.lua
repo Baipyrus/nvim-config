@@ -120,8 +120,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>gy', global_cmd_yank, { desc = '[G]lobal c
 -- Fix filename keymap
 vim.keymap.set({ 'n', 'v' }, '<leader>fp', function()
   -- lua print(string.gsub(vim.api.nvim_buf_get_name(0), vim.fn.getcwd(), ''))
-  local cwd = vim.fn.getcwd()
-  local path = vim.api.nvim_buf_get_name(0)
+  local cwd = vim.fn.getcwd():lower()
+  local path = vim.api.nvim_buf_get_name(0):lower()
   local file, _ = string.gsub(path, cwd .. '\\', '')
   vim.cmd('0f | file ' .. file)
 end, { desc = '[F]ile Fix Relative [P]ath' })
