@@ -24,9 +24,10 @@ return {
         local beginning = vim.fn.match(lines, vim.g.conflict_marker_begin)
         local ending = vim.fn.match(lines, vim.g.conflict_marker_end)
         local enabled = vim.diagnostic.is_enabled()
-        if (beginning > -1 or ending > -1) and enabled then
+        local conflict = beginning > -1 or ending > -1
+        if conflict and enabled then
           vim.diagnostic.enable(false)
-        elseif not enabled then
+        elseif not conflict and not enabled then
           vim.diagnostic.enable(true)
         end
       end
