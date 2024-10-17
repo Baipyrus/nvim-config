@@ -47,7 +47,7 @@ vim.keymap.set('n', '<leader>bd', function()
   -- Get current buffer
   local buf = vim.api.nvim_get_current_buf()
   -- Switch to different buffer
-  vim.cmd 'bp'
+  vim.cmd 'exe "norm \\<C-6>"'
   -- Delete saved buffer
   vim.api.nvim_buf_delete(buf, {})
 end, { desc = '[B]uffer [D]elete' })
