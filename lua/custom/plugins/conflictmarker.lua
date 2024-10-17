@@ -32,13 +32,8 @@ return {
       end
 
       -- Autocommand to disable diagnostics on buffer enter
-      vim.api.nvim_create_autocmd('BufRead', {
+      vim.api.nvim_create_autocmd({ 'BufRead', 'BufWritePre' }, {
         group = vim.api.nvim_create_augroup('git-conflict-lsp-disable', { clear = true }),
-        callback = git_conflict_detection,
-      })
-      -- Autocommand to disable diagnostics on save
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = vim.api.nvim_create_augroup('git-conflict-lsp-disable', { clear = false }),
         callback = git_conflict_detection,
       })
     end,
