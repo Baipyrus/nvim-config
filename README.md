@@ -58,13 +58,13 @@ git clone https://github.com/Baipyrus/nvim-config.git "${XDG_CONFIG_HOME:-$HOME/
 If you're using `cmd.exe`:
 
 ```bat
-git clone https://github.com/Baipyrus/nvim-config.git %localappdata%\nvim\
+git clone https://github.com/Baipyrus/nvim-config.git "%localappdata%\nvim\"
 ```
 
 If you're using `powershell.exe`
 
 ```pwsh
-git clone https://github.com/Baipyrus/nvim-config.git $env:LOCALAPPDATA\nvim\
+git clone https://github.com/Baipyrus/nvim-config.git "${env:LOCALAPPDATA}\nvim"
 ```
 
 </details>
@@ -103,7 +103,7 @@ current plugin status. Hit `q` to close the window.
     You can apply both of these approaches to any Neovim
     distribution that you would like to try out.
 * What if I want to "uninstall" this configuration:
-  * See [lazy.nvim uninstall](https://github.com/folke/lazy.nvim#-uninstalling) information
+  * See [lazy.nvim uninstall](https://lazy.folke.io/usage#-uninstalling) information
 
 ### Install Recipes
 
