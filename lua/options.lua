@@ -92,6 +92,10 @@ vim.opt.sidescrolloff = 12
 -- Set cursor pointer to block
 vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 
+-- Set global statusline
+vim.o.laststatus = 3
+vim.api.nvim_set_hl(0, 'WinSeparator', { bg = nil })
+
 vim.api.nvim_create_autocmd('UIEnter', {
   group = vim.api.nvim_create_augroup('SetGUISettings', { clear = true }),
   callback = function()
