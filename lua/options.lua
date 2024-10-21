@@ -4,7 +4,7 @@
 --  For more options, you can see `:help option-list`
 
 -- Set display language
-vim.cmd 'language en_US'
+vim.cmd 'silent! language en_US'
 
 -- Shell options
 -- Sets the shell to use for system() and ! commands in windows
