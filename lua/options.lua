@@ -9,7 +9,7 @@ vim.cmd 'silent! language en_US'
 -- Shell options
 -- Sets the shell to use for system() and ! commands in windows
 if vim.fn.has 'win32' == 1 and vim.fn.has 'wsl' == 0 then
-  vim.opt.shell = vim.fn.executable 'pwsh' == 1 and 'pwsh' or 'powershell'
+  vim.opt.shell = vim.fn.executable 'pwsh.exe' == 1 and 'pwsh' or 'powershell'
   vim.opt.shellcmdflag = '-NoLogo -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
   vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
   vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
