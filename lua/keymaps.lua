@@ -42,15 +42,6 @@ vim.keymap.set('n', '<leader>cdh', '<cmd>cd ' .. vim.env.HOME .. '<cr>', { desc 
 -- Automatically navigate to config directory
 vim.keymap.set('n', '<leader>cdn', '<cmd>cd ' .. vim.fn.stdpath 'config' .. '<cr>', { desc = '[C]hange [D]irectory to [N]eovim' })
 
--- Delete current buffer without closing window
-vim.keymap.set('n', '<leader>bd', function()
-  -- Get current buffer
-  local buf = vim.api.nvim_get_current_buf()
-  -- Switch to different buffer
-  vim.cmd 'silent! :exe "norm \\<C-6>"'
-  -- Delete saved buffer
-  vim.api.nvim_buf_delete(buf, {})
-end, { desc = '[B]uffer [D]elete' })
 -- Switch to between buffers
 vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = '[B]uffer [P]revious' })
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = '[B]uffer [N]ext' })
