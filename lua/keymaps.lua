@@ -16,7 +16,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagno
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Open terminal in current window
-vim.keymap.set({ 'n', 'v' }, '<leader>to', '<cmd>term<cr>', { desc = '[T]erminal [O]pen' })
+local use_ps = vim.fn.has 'win32' == 1 or vim.fn.has 'wsl' == 1
+local shellname = vim.fn.executable 'pwsh' == 1 and 'pwsh' or 'powershell'
+local cond_str = use_ps and (' ' .. shellname .. '.exe') or ''
+vim.keymap.set({ 'n', 'v' }, '<leader>to', '<cmd>term' .. cond_str .. '<cr>', { desc = '[T]erminal [O]pen' })
 
 -- Disable arrow keys in normal mode
 vim.keymap.set({ 'n', 'v' }, '<left>', '<cmd>echo "Use h to move!!"<CR>')
