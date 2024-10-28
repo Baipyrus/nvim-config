@@ -28,6 +28,9 @@ return {
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+
+      -- Code context using LSP info
+      'SmiteshP/nvim-navic',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -204,6 +207,20 @@ return {
             },
           },
         },
+      }
+
+      -- Setup code context via nvim-navic
+      require('nvim-navic').setup {
+        lsp = {
+          auto_attach = true,
+          preference = {
+            'svelte',
+            'intelephense',
+            'ts_ls',
+            'tailwindcss',
+          },
+        },
+        highlight = true,
       }
 
       -- Ensure the servers and tools above are installed
