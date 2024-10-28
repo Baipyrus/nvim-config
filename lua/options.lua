@@ -4,12 +4,12 @@
 --  For more options, you can see `:help option-list`
 
 -- Set display language
-vim.cmd('language en_US', {})
+vim.cmd 'silent! language en_US'
 
 -- Shell options
--- Sets the shell to use for system() and ! commands in windows
-if vim.fn.has 'win32' == 1 and vim.fn.has 'wsl' == 0 then
-  vim.opt.shell = vim.fn.executable 'pwsh' == 1 and 'pwsh' or 'powershell'
+-- Sets the shell to use for system() and ! commands in windows and wsl
+if vim.fn.has 'win32' == 1 or vim.fn.has 'wsl' == 1 then
+  vim.opt.shell = vim.fn.executable 'pwsh.exe' == 1 and 'pwsh.exe' or 'powershell.exe'
   vim.opt.shellcmdflag = '-NoLogo -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
   vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
   vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
@@ -38,9 +38,12 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -89,12 +92,21 @@ vim.opt.sidescrolloff = 12
 -- Set cursor pointer to block
 vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 
--- Options specifically targeted at Neovide
-if vim.g.neovide then
-  vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_cursor_animation_length = 0
-  vim.g.neovide_cursor_trail_length = 0
-end
+-- Set global statusline
+vim.o.laststatus = 3
+vim.api.nvim_set_hl(0, 'WinSeparator', { bg = nil })
+
+vim.api.nvim_create_autocmd('UIEnter', {
+  group = vim.api.nvim_create_augroup('SetGUISettings', { clear = true }),
+  callback = function()
+    -- Options specifically targeted at Neovide
+    if vim.g.neovide then
+      vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
+      vim.g.neovide_hide_mouse_when_typing = true
+      vim.g.neovide_cursor_animation_length = 0
+      vim.g.neovide_cursor_trail_length = 0
+    end
+  end,
+})
 
 -- vim: ts=2 sts=2 sw=2 et

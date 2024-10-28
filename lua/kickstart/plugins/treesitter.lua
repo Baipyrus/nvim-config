@@ -6,6 +6,8 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = {
         -- kickstart
@@ -30,6 +32,7 @@ return {
         'rust',
         'c_sharp',
         'go',
+        'powershell',
         -- git
         'gitcommit',
         'gitignore',
@@ -102,14 +105,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
-      -- Prefer git instead of curl in order to improve connectivity in some environments
-      require('nvim-treesitter.install').prefer_git = true
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup(opts)
-    end,
   },
 }
 -- vim: ts=2 sts=2 sw=2 et

@@ -1,15 +1,15 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
@@ -33,11 +33,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Delete (currently selected) text without yanking it
-vim.keymap.set({ 'n', 'v' }, '<leader>dny', '"_d', { desc = '[D]elete [N]o [Y]ank' })
--- Replace currently selected text with default register without yanking it
-vim.keymap.set('v', '<leader>pny', '"_dP', { desc = '[P]aste [N]o [Y]ank' })
-
 -- Populate CMD to prepare for change directory
 vim.keymap.set('n', '<leader>cd ', ':cd ', { desc = 'Prepare CMD for [C]hange [D]irectory' })
 -- Navigate to 'base' directory, the initial dir that nvim was run in
@@ -47,15 +42,6 @@ vim.keymap.set('n', '<leader>cdh', '<cmd>cd ' .. vim.env.HOME .. '<cr>', { desc 
 -- Automatically navigate to config directory
 vim.keymap.set('n', '<leader>cdn', '<cmd>cd ' .. vim.fn.stdpath 'config' .. '<cr>', { desc = '[C]hange [D]irectory to [N]eovim' })
 
--- Delete current buffer without closing window
-vim.keymap.set('n', '<leader>bd', function()
-  -- Get current buffer
-  local buf = vim.api.nvim_get_current_buf()
-  -- Switch to different buffer
-  vim.cmd 'bp'
-  -- Delete saved buffer
-  vim.api.nvim_buf_delete(buf, {})
-end, { desc = '[B]uffer [D]elete' })
 -- Switch to between buffers
 vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = '[B]uffer [P]revious' })
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = '[B]uffer [N]ext' })
@@ -125,8 +111,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>gy', global_cmd_yank, { desc = '[G]lobal c
 -- Fix filename keymap
 vim.keymap.set({ 'n', 'v' }, '<leader>fp', function()
   -- lua print(string.gsub(vim.api.nvim_buf_get_name(0), vim.fn.getcwd(), ''))
-  local cwd = vim.fn.getcwd()
-  local path = vim.api.nvim_buf_get_name(0)
+  local cwd = vim.fn.getcwd():lower()
+  local path = vim.api.nvim_buf_get_name(0):lower()
   local file, _ = string.gsub(path, cwd .. '\\', '')
   vim.cmd('0f | file ' .. file)
 end, { desc = '[F]ile Fix Relative [P]ath' })
@@ -137,6 +123,8 @@ if vim.g.neovide then
   vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from System clipboard' })
   -- Clipboard for command and insert mode
   vim.keymap.set({ 'c', 'i' }, '<C-S-v>', '<C-R>+', { desc = 'Paste from System clipboard' })
+  -- Clipboard for terminal mode
+  vim.keymap.set({ 't' }, '<C-S-v>', '<C-\\><C-n>"+pi', { desc = 'Paste from System clipboard' })
 end
 
 -- [[ Basic Autocommands ]]
