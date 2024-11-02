@@ -11,8 +11,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagno
 
 -- Open terminal in current window
 vim.keymap.del("n", "<C-/>")
-vim.keymap.del("n", "<leader>ft")
-vim.keymap.del("n", "<leader>fT")
 vim.keymap.set({ "n", "v" }, "<leader>to", "<cmd>term<cr>", { desc = "[T]erminal [O]pen" })
 
 -- Disable arrow keys in normal mode
