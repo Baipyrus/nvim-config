@@ -11,9 +11,15 @@ vim.g.base_dir = vim.fn.getcwd()
 -- Set display language
 vim.cmd("silent! language en_US")
 
--- Detect and use PowerShell on Windows
+-- Sets the shell to use for system() and ! commands in windows and wsl
 if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
-  LazyVim.terminal.setup("pwsh")
+  vim.opt.shell = vim.fn.executable("pwsh.exe") == 1 and "pwsh.exe" or "powershell.exe"
+  vim.opt.shellcmdflag =
+    "-NoLogo -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellxquote = ""
+  vim.opt.shellquote = ""
 end
 
 -- Indenting
