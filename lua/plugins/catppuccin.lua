@@ -2,8 +2,6 @@ return {
   -- add catppuccin
   {
     "catppuccin/nvim",
-    lazy = true,
-    name = "catppuccin",
     opts = {
       integrations = {
         cmp = true,
