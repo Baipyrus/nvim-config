@@ -10,5 +10,9 @@ return {
         "powershell-editor-services",
       },
     },
+    keys = {
+      { "<leader>cm", false },
+      { "<leader>m", "<cmd>Mason<cr>" },
+    },
   },
 }
