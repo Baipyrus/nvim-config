@@ -29,6 +29,9 @@ return {
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+
+      -- Needed to explore Workspace in Java
+      'stevearc/oil.nvim',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -273,11 +276,15 @@ return {
         end
         vim.api.nvim_create_autocmd('FileType', {
           pattern = 'java',
-          callback = function()
+          callback = function(opt)
             local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
             -- calculate workspace dir
             local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. project_name
             require('jdtls').start_or_attach(generate_config(workspace_dir))
+            vim.keymap.set('n', '<leader>we', '<cmd>Oil ' .. workspace_dir .. '<cr>', {
+              desc = '[W]orkspace [E]xplorer',
+              buffer = opt.buf,
+            })
           end,
         })
       end
