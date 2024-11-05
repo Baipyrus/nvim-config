@@ -224,54 +224,6 @@ return {
           -- set default config according to sysname
           local config_path = install_path .. '/config_' .. sysname
 
-          -- START SEARCH FOR PROCESSING --
-          -- detect install path based on system
-          local is_windows = vim.fn.has 'win32' == 1
-          local cmds = is_windows and {
-            '(gcm processing.exe).source',
-          } or {
-            'whereis',
-            'processing.exe',
-          }
-
-          -- run syscall and process output
-          local output = vim.system(cmds, { text = true }):wait()
-          local path = output.stdout or ''
-          if not is_windows then
-            -- on linux, get substr starting with path
-            local start_idx = string.find(path, '/')
-            path = (start_idx ~= nil) and string.sub(path, start_idx) or ''
-          end
-
-          -- for windows, remove backslashes
-          path = string.gsub(path, '\\', '/')
-          -- remove filename at end of path
-          local end_idx = string.find(path, '/[^/]*$')
-          path = string.sub(path, 1, end_idx)
-
-          -- in case of chocolatey install, navigate to binaries
-          local is_chocolatey = string.find(path, 'chocolatey')
-          if is_chocolatey then
-            path = path .. '../lib/processing/tools/'
-            -- list directories for program version
-            cmds = is_windows and {
-              'ls',
-              path,
-              '|select name',
-              '|Out-String',
-            } or {
-              'ls',
-              '-l',
-              path,
-            }
-
-            output = vim.system(cmds, { text = true }):wait()
-            local version = string.match(output.stdout, 'processing[^%s]*')
-            path = path .. version
-          end
-          -- set path to processing-core library
-          path = path .. '/core/library/core.jar'
-
           -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
           local config = {
             -- The command that starts the language server
@@ -308,13 +260,7 @@ return {
             -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
             -- for a list of options
             settings = {
-              java = {
-                project = {
-                  referencedLibraries = {
-                    is_windows and string.gsub(path, '/', '\\') or path,
-                  },
-                },
-              },
+              java = {},
             },
 
             -- Language server `initializationOptions`
