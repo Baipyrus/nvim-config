@@ -209,20 +209,6 @@ return {
         },
       }
 
-      -- Setup code context via nvim-navic
-      require('nvim-navic').setup {
-        lsp = {
-          auto_attach = true,
-          preference = {
-            'svelte',
-            'intelephense',
-            'ts_ls',
-            'tailwindcss',
-          },
-        },
-        highlight = true,
-      }
-
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run

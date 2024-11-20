@@ -96,9 +96,6 @@ vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 vim.o.laststatus = 3
 vim.api.nvim_set_hl(0, 'WinSeparator', { bg = nil })
 
--- Set winbar to nvim-navic for code context
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-
 vim.api.nvim_create_autocmd('UIEnter', {
   group = vim.api.nvim_create_augroup('SetGUISettings', { clear = true }),
   callback = function()
