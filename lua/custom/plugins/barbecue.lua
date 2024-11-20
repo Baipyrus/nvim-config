@@ -7,6 +7,9 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   opts = {
+    exclude_filetypes = {
+      'gitcommit',
+    },
     modifiers = {
       basename = ':e',
     },
