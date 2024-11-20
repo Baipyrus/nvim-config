@@ -28,6 +28,9 @@ return {
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+
+      -- Code context using LSP info
+      'SmiteshP/nvim-navic',
     },
     config = function()
       -- Brief aside: **What is LSP?**
