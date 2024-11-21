@@ -191,6 +191,11 @@ return {
           cwd = vim.fn.stdpath 'config',
         }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- Telescope Git Pickers
+      vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[G]it [B]ranches' })
+      vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = '[G]it [C]ommits' })
+      vim.keymap.set('n', '<leader>gC', builtin.git_bcommits, { desc = '[G]it Buffer [C]ommits' })
     end,
   },
 }
