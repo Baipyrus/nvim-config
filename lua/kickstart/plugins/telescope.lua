@@ -214,7 +214,7 @@ return {
               end)
             end
 
-            map({ 'n', 'i' }, '<C-S-d>', function(prompt_bufnr)
+            local function git_drop_stash(prompt_bufnr)
               local picker = action_state.get_current_picker(prompt_bufnr)
               local selection = picker:get_multi_selection()
 
@@ -258,7 +258,8 @@ return {
               -- refresh picker
               actions.close(prompt_bufnr)
               vim.schedule(git_stash_mappings)
-            end, { desc = 'git_drop_stash' })
+            end
+            map({ 'n', 'i' }, '<C-S-d>', git_drop_stash)
             return true
           end,
         }
