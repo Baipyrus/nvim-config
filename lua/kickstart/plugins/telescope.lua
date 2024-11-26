@@ -214,7 +214,7 @@ return {
               end)
             end
 
-            map({ 'n', 'i' }, '<C-d>', function(prompt_bufnr)
+            map({ 'n', 'i' }, '<C-S-d>', function(prompt_bufnr)
               local picker = action_state.get_current_picker(prompt_bufnr)
               local selection = picker:get_multi_selection()
 
