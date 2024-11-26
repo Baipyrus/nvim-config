@@ -204,6 +204,31 @@ return {
             local utils = require 'telescope.utils'
             local action_state = require 'telescope.actions.state'
 
+            -- Reference: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/actions/init.lua#L587
+            local function git_apply_stash(prompt_bufnr)
+              local selection = action_state.get_selected_entry()
+              if selection == nil then
+                utils.__warn_no_selection 'actions.git_apply_stash'
+                return
+              end
+              actions.close(prompt_bufnr)
+              -- Remove unwanted '--index' flag from command
+              local _, ret, stderr = utils.get_os_command_output { 'git', 'stash', 'apply', selection.value }
+              if ret == 0 then
+                utils.notify('actions.git_apply_stash', {
+                  msg = string.format("applied: '%s' ", selection.value),
+                  level = 'INFO',
+                })
+              else
+                utils.notify('actions.git_apply_stash', {
+                  ---@diagnostic disable-next-line: param-type-mismatch
+                  msg = string.format("Error when applying: %s. Git returned: '%s'", selection.value, table.concat(stderr, ' ')),
+                  level = 'ERROR',
+                })
+              end
+            end
+            actions.select_default:replace(git_apply_stash)
+
             -- custom function to match stash index inside curly brackets
             local function match_bracket(str, arr)
               string.gsub(str, '{(.-)}', function(match)
