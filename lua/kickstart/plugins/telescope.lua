@@ -228,8 +228,12 @@ return {
               -- scan single selected entry
               local entry = action_state.get_selected_entry()
               if entry == nil and #stashes == 0 then
-                -- reference: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/actions/init.lua#L589
-                utils.__warn_no_selection 'actions.git_apply_stash'
+                vim.notify(
+                  ---@diagnostic disable-next-line: param-type-mismatch
+                  string.format('WARN [%s]: Nothing currently selected', 'git_drop_stash'),
+                  vim.log.levels.WARN,
+                  { title = 'telescope.nvim' }
+                )
                 return
               end
               match_bracket(entry.value, stashes)
