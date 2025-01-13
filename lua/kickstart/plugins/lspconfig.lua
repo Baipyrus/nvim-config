@@ -21,6 +21,7 @@ return {
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+      { 'mfussenegger/nvim-jdtls', ft = 'java' },
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -29,6 +30,8 @@ return {
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
 
+      -- Needed to explore Workspace in Java
+      'stevearc/oil.nvim',
       -- Code context using LSP info
       'SmiteshP/nvim-navic',
     },
@@ -215,6 +218,85 @@ return {
         },
       }
 
+      local function jdtls_setup()
+        --- @param workspace_dir string
+        local function generate_config(workspace_dir)
+          -- get the mason install path
+          local install_path = require('mason-registry').get_package('jdtls'):get_install_path()
+          local jdtls_path = vim.fn.glob(install_path .. '/plugins/org.eclipse.equinox.launcher_*.jar')
+
+          -- try to detect sysname for config
+          local sysname = 'win'
+          if vim.fn.has 'unix' then
+            sysname = 'linux'
+          elseif vim.fn.has 'mac' then
+            sysname = 'mac'
+          end
+          -- set default config according to sysname
+          local config_path = install_path .. '/config_' .. sysname
+
+          -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
+          local config = {
+            -- The command that starts the language server
+            -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
+            cmd = {
+              'java',
+
+              '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+              '-Dosgi.bundles.defaultStartLevel=4',
+              '-Declipse.product=org.eclipse.jdt.ls.core.product',
+              '-Dlog.protocol=true',
+              '-Dlog.level=ALL',
+              '-Xmx1g',
+              '--add-modules=ALL-SYSTEM',
+              '--add-opens',
+              'java.base/java.util=ALL-UNNAMED',
+              '--add-opens',
+              'java.base/java.lang=ALL-UNNAMED',
+
+              '-jar',
+              jdtls_path,
+
+              '-configuration',
+              config_path,
+
+              '-data',
+              workspace_dir,
+            },
+
+            capabilities = capabilities,
+            root_dir = vim.fs.root(0, { '.git', 'mvnw', 'gradlew' }),
+
+            -- Here you can configure eclipse.jdt.ls specific settings
+            -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+            -- for a list of options
+            settings = {
+              java = {},
+            },
+
+            -- Language server `initializationOptions`
+            -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
+            init_options = {
+              bundles = {},
+            },
+          }
+          return config
+        end
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'java',
+          callback = function(opt)
+            local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+            -- calculate workspace dir
+            local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. project_name
+            require('jdtls').start_or_attach(generate_config(workspace_dir))
+            vim.keymap.set('n', '<leader>we', '<cmd>Oil ' .. workspace_dir .. '<cr>', {
+              desc = '[W]orkspace [E]xplorer',
+              buffer = opt.buf,
+            })
+          end,
+        })
+      end
+
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -234,12 +316,18 @@ return {
         'markdownlint',
         'isort',
         'black',
+        'jdtls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
+            if server_name == 'jdtls' then
+              jdtls_setup()
+              return
+            end
+
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
