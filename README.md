@@ -18,7 +18,7 @@ If you are experiencing issues, please make sure you have the latest versions.
 External Requirements:
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
-- Clipboard tool (xclip/xsel/win32yank or other depending on platform)
+- Clipboard tool (xclip/xsel/win32yank or other depending on the platform)
 - A [Nerd Font](https://www.nerdfonts.com/): provides various icons
 - Language utils: `rustup`, `npm`, `dotnet`, `python`, `golang`, `composer`
 - Optionally, install [Alacritty](https://github.com/alacritty/alacritty#installation)
@@ -78,13 +78,13 @@ nvim
 ```
 
 That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
-current plugin status. Hit `q` to close the window.
+the current plugin status. Hit `q` to close the window.
 
 ### FAQ
 
-* What should I do if I already have a pre-existing neovim configuration?
+* What should I do if I already have a pre-existing Neovim configuration?
   * You should back it up and then delete all associated files.
-  * This includes your existing init.lua and the neovim files in `~/.local`
+  * This includes your existing init.lua and the Neovim files in `~/.local`
     which can be deleted with `rm -rf ~/.local/share/nvim/` or their
     windows counterparts in `AppData\Local\nvim-data`
 * Can I keep my existing configuration in parallel to kickstart?
@@ -138,7 +138,7 @@ run in cmd as **admin**:
 winget install --accept-source-agreements chocolatey.chocolatey
 ```
 
-2. install all requirements using choco, exit previous cmd and
+2. install all requirements using choco, exit the previous cmd and
 open a new one so that choco path is set, and run in cmd as **admin**:
 ```
 choco install -y neovim git ripgrep wget fd unzip gzip mingw make
