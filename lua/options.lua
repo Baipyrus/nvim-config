@@ -96,6 +96,16 @@ vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 vim.o.laststatus = 3
 vim.api.nvim_set_hl(0, 'WinSeparator', { bg = nil })
 
+-- Disable tabpages
+vim.api.nvim_create_autocmd('TabNew', {
+  group = vim.api.nvim_create_augroup('TabGroup', { clear = true }),
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+    vim.cmd 'tabclose'
+    vim.api.nvim_set_current_buf(buf)
+  end,
+})
+
 vim.api.nvim_create_autocmd('UIEnter', {
   group = vim.api.nvim_create_augroup('SetGUISettings', { clear = true }),
   callback = function()
