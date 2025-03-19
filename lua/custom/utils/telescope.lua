@@ -77,6 +77,12 @@ end
 --- Drop git stashes by their indices.
 --- @param stashes table: A list of stash indices to drop.
 function M.git_drop_stash(stashes)
+  -- Ask for confirmation
+  local confirmation = vim.fn.input(string.format('Do you really wanna drop stash %s? [Y/n] ', table.concat(stashes, ', ')))
+  if confirmation ~= '' and string.lower(confirmation) ~= 'y' then
+    return
+  end
+
   local success = {}
   for idx = #stashes, 1, -1 do
     -- execute git command in os
