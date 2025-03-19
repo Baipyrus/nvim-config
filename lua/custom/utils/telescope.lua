@@ -130,4 +130,21 @@ function M.git_stash()
   }
 end
 
+--- Extend the Telescope `git_stash` picker with adjusted mappings.
+function M.git_branches()
+  builtin.git_branches {
+    attach_mappings = function(_, map)
+      actions.select_default:replace(actions.git_checkout)
+      map({ 'i', 'n' }, '<C-t>', actions.git_track_branch)
+      map({ 'i', 'n' }, '<C-r>', actions.git_rebase_branch)
+      map({ 'i', 'n' }, '<C-a>', actions.git_create_branch)
+      map({ 'i', 'n' }, '<C-s>', actions.git_switch_branch)
+      map({ 'i', 'n' }, '<C-d>', actions.preview_scrolling_down)
+      map({ 'i', 'n' }, '<C-S-d>', actions.git_delete_branch)
+      map({ 'i', 'n' }, '<C-y>', actions.git_merge_branch)
+      return true
+    end,
+  }
+end
+
 return M

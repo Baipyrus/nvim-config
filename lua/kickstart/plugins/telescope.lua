@@ -194,7 +194,7 @@ return {
 
       -- Telescope Git Pickers
       local utils = require 'custom.utils.telescope'
-      vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[G]it [B]ranches' })
+      vim.keymap.set('n', '<leader>gb', utils.git_branches, { desc = '[G]it [B]ranches' })
       vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = '[G]it [C]ommits' })
       vim.keymap.set('n', '<leader>gC', builtin.git_bcommits, { desc = '[G]it Buffer [C]ommits' })
       vim.keymap.set('n', '<leader>gS', utils.git_stash, { desc = '[G]it [S]tash' })
