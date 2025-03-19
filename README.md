@@ -19,7 +19,8 @@ External Requirements:
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - Clipboard tool (xclip/xsel/win32yank or other depending on the platform)
-- A [Nerd Font](https://www.nerdfonts.com/): provides various icons
+- A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
+  - if you don't want it set `vim.g.have_nerd_font` in `init.lua` to false
 - Language utils: `rustup`, `npm`, `dotnet`, `python`, `golang`, `composer`
 - Optionally, install [Alacritty](https://github.com/alacritty/alacritty#installation)
   - Or on Windows, just install using `winget install alacritty --source winget`
@@ -171,14 +172,14 @@ sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip curl
 
 # Now we install nvim
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-sudo rm -rf /opt/nvim-linux64
-sudo mkdir -p /opt/nvim-linux64
-sudo chmod a+rX /opt/nvim-linux64
-sudo tar -C /opt -xzf nvim-linux64.tar.gz
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo mkdir -p /opt/nvim-linux-x86_64
+sudo chmod a+rX /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
 # make it available in /usr/local/bin, distro installs to /usr/bin
-sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/
+sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/
 ```
 </details>
 <details><summary>Fedora Install Steps</summary>
