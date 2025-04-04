@@ -6,9 +6,10 @@
 -- Set display language
 vim.cmd 'silent! language en_US'
 
+local is_windows = vim.fn.has 'win32' == 1 or vim.fn.has 'wsl' == 1
 -- Shell options
 -- Sets the shell to use for system() and ! commands in windows and wsl
-if vim.fn.has 'win32' == 1 or vim.fn.has 'wsl' == 1 then
+if is_windows then
   vim.opt.shell = vim.fn.executable 'pwsh.exe' == 1 and 'pwsh.exe' or 'powershell.exe'
   vim.opt.shellcmdflag = '-NoLogo -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
   vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
@@ -110,7 +111,8 @@ vim.api.nvim_create_autocmd('UIEnter', {
   callback = function()
     -- Options specifically targeted at Neovide
     if vim.g.neovide then
-      vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h14'
+      local fontname = is_windows and 'CaskaydiaCove Nerd Font Mono' or 'Cascadia Code NF'
+      vim.o.guifont = fontname .. ':h14'
       vim.g.neovide_hide_mouse_when_typing = true
       vim.g.neovide_cursor_animation_length = 0
       vim.g.neovide_cursor_trail_length = 0
