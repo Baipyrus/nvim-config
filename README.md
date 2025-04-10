@@ -25,13 +25,13 @@ External Requirements:
 - Optionally, install [Alacritty](https://github.com/alacritty/alacritty#installation)
   - Or on Windows, just install using `winget install alacritty --source winget`
 
-> **NOTE**
+> [!NOTE]
 > See [Install Recipes](#Install-Recipes) for additional Windows and Linux specific notes
 > and quick install snippets
 
 ### Install Config
 
-> **NOTE**
+> [!NOTE]
 > [Backup](#FAQ) your previous configuration (if any exists)
 
 Neovim's configurations are located under the following paths, depending on your OS:
