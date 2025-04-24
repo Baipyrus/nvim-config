@@ -361,6 +361,7 @@ return {
         'markdownlint',
         'isort',
         'black',
+        'php-cs-fixer',
         'jdtls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }

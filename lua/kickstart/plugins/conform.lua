@@ -41,6 +41,21 @@ return {
 
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
+
+        php = { 'php_cs_fixer' },
+      },
+      formatters = {
+        php_cs_fixer = {
+          prepend_args = function()
+            local rules = {
+              '@Symfony',
+            }
+            return {
+              '--using-cache=no',
+              '--rules=' .. table.concat(rules, ','),
+            }
+          end,
+        },
       },
     },
   },
