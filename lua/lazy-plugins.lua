@@ -18,7 +18,7 @@ require('lazy').setup({
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'sophacles/vim-processing', -- Processing-Java
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -40,7 +40,7 @@ require('lazy').setup({
 
   require 'kickstart/plugins/conform',
 
-  require 'kickstart/plugins/cmp',
+  require 'kickstart/plugins/blink-cmp',
 
   require 'kickstart/plugins/todo-comments',
 
