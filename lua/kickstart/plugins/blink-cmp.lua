@@ -62,9 +62,11 @@ return {
         -- Custom keymaps:
         ['<Up>'] = { 'select_prev', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
-        ['<C-space>'] = { 'show' },
+        ['<C-space>'] = { 'show', 'fallback' },
         ['<CR>'] = { 'select_and_accept', 'fallback' },
         ['<C-n>'] = { 'cancel', 'fallback' },
+        ['<Tab>'] = { 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
