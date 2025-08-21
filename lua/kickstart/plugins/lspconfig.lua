@@ -276,7 +276,7 @@ return {
         --- @param workspace_dir string
         local function generate_config(workspace_dir)
           -- get the mason install path
-          local install_path = require('mason-registry').get_package('jdtls'):get_install_path()
+          local install_path = vim.fn.expand '$MASON/share/jdtls/'
           local jdtls_path = vim.fn.glob(install_path .. '/plugins/org.eclipse.equinox.launcher_*.jar')
 
           -- try to detect sysname for config
