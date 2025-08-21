@@ -375,7 +375,6 @@ return {
         'isort',
         'markdownlint',
         'php-cs-fixer',
-        'prettier',
         'prettierd',
         'stylua',
       })
