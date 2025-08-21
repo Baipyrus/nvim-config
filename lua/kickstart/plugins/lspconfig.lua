@@ -22,6 +22,18 @@ return {
       { 'mason-org/mason.nvim', opts = {} },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+
+      -- Versioning for installed Mason tools
+      {
+        'zapling/mason-lock.nvim',
+        init = function()
+          require('mason-lock').setup {
+            lockfile_path = vim.fn.stdpath 'config' .. '/mason-lock.json',
+          }
+        end,
+      },
+
+      -- Java LS config plugin
       { 'mfussenegger/nvim-jdtls', ft = 'java' },
 
       -- Useful status updates for LSP.
