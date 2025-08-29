@@ -22,6 +22,18 @@ return {
       { 'mason-org/mason.nvim', opts = {} },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+
+      -- Versioning for installed Mason tools
+      {
+        'zapling/mason-lock.nvim',
+        init = function()
+          require('mason-lock').setup {
+            lockfile_path = vim.fn.stdpath 'config' .. '/mason-lock.json',
+          }
+        end,
+      },
+
+      -- Java LS config plugin
       { 'mfussenegger/nvim-jdtls', ft = 'java' },
 
       -- Useful status updates for LSP.
@@ -223,13 +235,17 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        docker_compose_language_service = {},
         powershell_es = {},
         rust_analyzer = {},
         intelephense = {},
         tailwindcss = {},
         omnisharp = {},
+        dockerls = {},
         pyright = {},
         svelte = {},
+        jsonls = {},
+        yamlls = {},
         ts_ls = {},
         gopls = {},
         jdtls = {},
@@ -260,85 +276,6 @@ return {
         },
       }
 
-      local function jdtls_setup()
-        --- @param workspace_dir string
-        local function generate_config(workspace_dir)
-          -- get the mason install path
-          local install_path = require('mason-registry').get_package('jdtls'):get_install_path()
-          local jdtls_path = vim.fn.glob(install_path .. '/plugins/org.eclipse.equinox.launcher_*.jar')
-
-          -- try to detect sysname for config
-          local sysname = 'win'
-          if vim.fn.has 'unix' then
-            sysname = 'linux'
-          elseif vim.fn.has 'mac' then
-            sysname = 'mac'
-          end
-          -- set default config according to sysname
-          local config_path = install_path .. '/config_' .. sysname
-
-          -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
-          local config = {
-            -- The command that starts the language server
-            -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-            cmd = {
-              'java',
-
-              '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-              '-Dosgi.bundles.defaultStartLevel=4',
-              '-Declipse.product=org.eclipse.jdt.ls.core.product',
-              '-Dlog.protocol=true',
-              '-Dlog.level=ALL',
-              '-Xmx1g',
-              '--add-modules=ALL-SYSTEM',
-              '--add-opens',
-              'java.base/java.util=ALL-UNNAMED',
-              '--add-opens',
-              'java.base/java.lang=ALL-UNNAMED',
-
-              '-jar',
-              jdtls_path,
-
-              '-configuration',
-              config_path,
-
-              '-data',
-              workspace_dir,
-            },
-
-            capabilities = capabilities,
-            root_dir = vim.fs.root(0, { '.git', 'mvnw', 'gradlew' }),
-
-            -- Here you can configure eclipse.jdt.ls specific settings
-            -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-            -- for a list of options
-            settings = {
-              java = {},
-            },
-
-            -- Language server `initializationOptions`
-            -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-            init_options = {
-              bundles = {},
-            },
-          }
-          return config
-        end
-        vim.api.nvim_create_autocmd('FileType', {
-          pattern = 'java',
-          callback = function(opt)
-            local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-            -- calculate workspace dir
-            local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. project_name
-            require('jdtls').start_or_attach(generate_config(workspace_dir))
-            vim.keymap.set('n', '<leader>we', '<cmd>Oil ' .. workspace_dir .. '<cr>', {
-              desc = '[W]orkspace [E]xplorer',
-              buffer = opt.buf,
-            })
-          end,
-        })
-      end
-
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -354,14 +291,13 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
-        'eslint_d',
-        'prettier',
-        'prettierd',
-        'markdownlint',
-        'isort',
         'black',
+        'eslint_d',
+        'isort',
+        'markdownlint',
         'php-cs-fixer',
+        'prettierd',
+        'stylua',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -370,11 +306,6 @@ return {
         automatic_installation = false,
         handlers = {
           function(server_name)
-            if server_name == 'jdtls' then
-              jdtls_setup()
-              return
-            end
-
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
