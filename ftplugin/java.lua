@@ -1,5 +1,4 @@
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. project_name
+local utils = require 'custom.utils.java'
 
 -- `cmd` defines the executable to launch eclipse.jdt.ls.
 -- `jdtls` must be available in $PATH and you must have Python3.9 for this to work.
@@ -12,7 +11,7 @@ local config = {
     'jdtls',
 
     '-data',
-    workspace_dir,
+    utils.project_dir(),
   },
 
   root_dir = vim.fs.root(0, { '.git', 'mvnw', 'gradlew' }),
@@ -38,7 +37,9 @@ local config = {
 
 require('jdtls').start_or_attach(config)
 
-vim.keymap.set('n', '<leader>we', '<cmd>Oil ' .. workspace_dir .. '<cr>', {
+vim.keymap.set('n', '<leader>we', function()
+  vim.cmd('Oil ' .. utils.workspace_dir())
+end, {
   desc = '[W]orkspace [E]xplorer',
   buffer = vim.fn.bufnr(),
 })
