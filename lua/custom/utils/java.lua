@@ -22,4 +22,43 @@ function M.workspace_dir()
   return workspace_dir or project_dir
 end
 
+-- Get classpaths and entrypoint classname
+--- @return string[]
+function M.get_classpaths()
+  ---@type string[]|nil
+  local classpaths = nil
+  local done = false
+
+  -- Try calling function with project classpaths
+  util.with_classpaths(function(resp)
+    assert(resp ~= nil, 'JDT-LS not attached to buffer!')
+    classpaths = resp.classpaths
+    done = true
+  end)
+
+  -- Wait up to 1sec for execution of callback
+  local ok = vim.wait(1000, function()
+    return done
+  end, 10)
+
+  -- Timeout; classpaths not found
+  if not ok then
+    error 'Timeout waiting for classpaths!'
+  end
+
+  assert(classpaths ~= nil)
+  local workspace_dir = M.workspace_dir()
+
+  -- Replace workspace path with `cwd` in classpaths
+  for idx, path in ipairs(classpaths) do
+    if string.find(path, workspace_dir, nil, true) then
+      table.remove(classpaths, idx)
+      break
+    end
+  end
+  table.insert(classpaths, 1, '.')
+
+  return classpaths
+end
+
 return M
