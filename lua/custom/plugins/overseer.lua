@@ -10,6 +10,7 @@ return {
           'builtin',
           'golang.run_project',
           'golang.run_file',
+          'java.compile_main',
           'java.run_main',
         },
         task_list = {
