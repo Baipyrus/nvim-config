@@ -44,7 +44,10 @@ return {
       -- CSharp LS config plugin
       {
         'seblyng/roslyn.nvim',
-        ft = { 'cs' },
+        ft = { 'cs', 'razor' },
+        dependencies = {
+          { 'tris203/rzls.nvim', config = true },
+        },
         opts = {},
       },
 
@@ -234,6 +237,19 @@ return {
         },
       }
 
+      -- CMD of rosyln/rzls Language Server for CSharp support
+      local rzls_path = vim.fn.expand '$MASON/packages/rzls/libexec'
+      local roslynLsCmd = {
+        'roslyn',
+        '--stdio',
+        '--logLevel=Information',
+        '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
+        '--razorSourceGenerator=' .. vim.fs.joinpath(rzls_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'),
+        '--razorDesignTimePath=' .. vim.fs.joinpath(rzls_path, 'Targets', 'Microsoft.NET.Sdk.Razor.DesignTime.targets'),
+        '--extension',
+        vim.fs.joinpath(rzls_path, 'RazorExtension', 'Microsoft.VisualStudioCode.RazorExtension.dll'),
+      }
+
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -260,10 +276,19 @@ return {
         svelte = {},
         jsonls = {},
         yamlls = {},
-        roslyn = {},
+        roslyn = {
+          cmd = roslynLsCmd,
+          handlers = require 'rzls.roslyn_handlers',
+          settings = {
+            ['csharp|code_lens'] = {
+              dotnet_enable_references_code_lens = true,
+            },
+          },
+        },
         ts_ls = {},
         gopls = {},
         jdtls = {},
+        rzls = {},
         html = {
           filetypes = {
             'html',
