@@ -117,6 +117,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>fp', function()
   vim.cmd('0f | file ' .. file)
 end, { desc = '[F]ile Fix Relative [P]ath' })
 
+vim.keymap.set('n', '<leader>ss', '<cmd>AutoSession search<cr>', { desc = '[S]earch [S]essions' })
+
 if vim.g.neovide then
   -- System clipboard keybinds in normal and visual mode
   vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"+y', { desc = 'Yank to System clipboard' })
