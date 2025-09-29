@@ -9,6 +9,5 @@ return {
     auto_save = true,
     auto_restore = false,
     auto_create = false,
-    auto_restore_last_session = true,
   },
 }
