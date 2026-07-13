@@ -20,5 +20,18 @@ return {
       { "<leader>fb", false },
       { "<leader>gs", false },
     },
+    opts = {
+      dashboard = {
+        preset = {
+          -- stylua: ignore
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            { icon = " ", key = "p", desc = "Find Project", action = ":lua Snacks.picker.projects()" },
+            { icon = " ", key = "s", desc = "Find Session", action = ":AutoSession search" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+      },
+    },
   },
 }
