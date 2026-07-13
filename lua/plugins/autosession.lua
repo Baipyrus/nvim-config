@@ -11,5 +11,8 @@ return {
       auto_restore = false,
       auto_create = false,
     },
+    keys = {
+      { "<leader>fs", "<cmd>AutoSession search<cr>", desc = "[F]ind [S]ession" },
+    },
   },
 }
