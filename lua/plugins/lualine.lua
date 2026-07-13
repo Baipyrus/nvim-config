@@ -7,6 +7,8 @@ return {
       sections = {
         lualine_c = {
           LazyVim.lualine.root_dir(),
+          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          { "filename", padding = { left = 0, right = 1 } },
           {
             "diagnostics",
             symbols = {
@@ -16,8 +18,6 @@ return {
               hint = icons.diagnostics.Hint,
             },
           },
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { "filename", padding = { left = 0, right = 1 } },
         },
         lualine_y = {
           { "progress" },
