@@ -18,4 +18,3 @@ opt.sessionoptions =
 -- Size of an indent
 opt.tabstop = 4
 opt.softtabstop = 4
-opt.shiftwidth = 2
