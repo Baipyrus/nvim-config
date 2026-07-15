@@ -18,6 +18,7 @@ return {
         desc = "Buffers",
       },
       { "<leader>fb", false },
+      { "<leader>fp", false },
       { "<leader>gs", false },
     },
     opts = {
@@ -26,8 +27,9 @@ return {
           -- stylua: ignore
           ---@type snacks.dashboard.Item[]
           keys = {
-            { icon = " ", key = "p", desc = "Find Project", action = ":lua Snacks.picker.projects()" },
             { icon = " ", key = "s", desc = "Find Session", action = ":AutoSession search" },
+            { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
         },
