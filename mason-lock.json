@@ -1,4 +1,5 @@
 {
+  "bash-language-server": "5.6.0",
   "black": "26.5.1",
   "clangd": "22.1.6",
   "cmakelang": "0.6.13",
