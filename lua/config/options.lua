@@ -18,3 +18,7 @@ opt.sessionoptions =
 -- Size of an indent
 opt.tabstop = 4
 opt.softtabstop = 4
+
+-- Absolute no line wrapping
+opt.linebreak = false
+opt.wrap = false
